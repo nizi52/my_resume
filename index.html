@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Портфолио - Главная</title>
+    <link rel="stylesheet" href="styles/styles.css">
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="logo-section">
+                    <div class="logo"><img src="/images/icons/picture1.png" class="logo"></div>
+                    <div class="name">Зайнуллин Яков</div>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="active">Главная</a></li>
+                    <li><a href="pages/projects.html">Проекты</a></li>
+                    <li><a href="pages/diary.html">Дневник</a></li>
+                    <li><a href="pages/contacts.html">Контакты</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Основное содержимое -->
+    <main>
+        <!-- Герой-секция -->
+        <section class="hero">
+            <div class="hero-container">
+                <div class="hero-text">
+                    <h1>Привет! Я студент<br>группы ЭФБО-07-24</h1>
+                    <p>Увлекаюсь веб-разработкой и создаю современные интерфейсы</p>
+                    <button class="download-btn" onclick="downloadResume()">Скачать резюме</button>
+                </div>
+                <div class="hero-image">
+                    <div class="photo-placeholder"><img src="/images/icons/picture1.png" class="profile-photo"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Секция навыков -->
+        <section class="skills-section">
+            <div class="container">
+                <h2>Мои навыки</h2>
+                <div class="skills-container">
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span>HTML/CSS</span>
+                            <span>90%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress html-css"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span>JavaScript</span>
+                            <span>80%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress javascript"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span>Bootstrap</span>
+                            <span>85%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress bootstrap"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span>React</span>
+                            <span>60%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress react"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Секция лучших проектов -->
+        <section class="projects-section">
+            <div class="container">
+                <h2>Лучшие проекты</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-placeholder">🎨</div>
+                        <h3>Личный сайт</h3>
+                        <p>HTML, CSS</p>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-placeholder">📱</div>
+                        <h3>Todo-приложение</h3>
+                        <p>JavaScript</p>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-placeholder">🛒</div>
+                        <h3>Интернет-магазин</h3>
+                        <p>React</p>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-placeholder">💼</div>
+                        <h3>Портфолио</h3>
+                        <p>Bootstrap</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Подвал -->
+    <footer>
+        <div class="container">
+            <p>© 2025 Контакты <a href="https://github.com/nizi52" target="_blank" class="github-link">GitHub</a></p>
+        </div>
+    </footer>
+
+    <script>
+        function downloadResume() {
+            alert('Резюме будет скачано! В реальном проекте здесь будет ссылка на PDF файл.');
+            // В реальном проекте: window.open('assets/resume.pdf', '_blank');
+        }
+    </script>
+</body>
+</html>

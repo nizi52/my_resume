@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Портфолио - Дневник</title>
+    <link rel="stylesheet" href="../styles/styles.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="logo-section">
+                    <div class="logo"><img src="/images/icons/picture1.png" class="logo"></div>
+                    <div class="name">Зайнуллин Яков</div>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="../index.html">Главная</a></li>
+                    <li><a href="projects.html">Проекты</a></li>
+                    <li><a href="diary.html" class="active">Дневник</a></li>
+                    <li><a href="contacts.html">Контакты</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main style="margin-top: 100px; padding: 2rem;">
+        <div class="container">
+            <div class="page-header">
+                <h1>Учебный дневник</h1>
+                <p>Отслеживание прогресса в обучении</p>
+            </div>
+            
+            <div class="diary-layout">
+                <div class="progress-section">
+                    <h2>Текущие курсы</h2>
+                    <div class="course-progress">
+                        <div class="course-item">
+                            <span>Веб-разработка</span>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 90%; background: #3498db;"></div>
+                            </div>
+                            <span>90%</span>
+                        </div>
+                        <div class="course-item">
+                            <span>JavaScript</span>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 70%; background: #f39c12;"></div>
+                            </div>
+                            <span>70%</span>
+                        </div>
+                        <div class="course-item">
+                            <span>React</span>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 50%; background: #9b59b6;"></div>
+                            </div>
+                            <span>50%</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tasks-section">
+                    <h2>Последние задачи</h2>
+                    <div class="task-list">
+                        <div class="task-item completed">
+                            <span class="task-check">✓</span>
+                            <span class="task-text">Верстка макета сайта</span>
+                            <span class="task-date">28 окт</span>
+                        </div>
+                        <div class="task-item in-progress">
+                            <span class="task-check">⟳</span>
+                            <span class="task-text">Работа с формами</span>
+                            <span class="task-date">27 окт</span>
+                        </div>
+                        <div class="task-item in-progress">
+                            <span class="task-check">⟳</span>
+                            <span class="task-text">Адаптивный дизайн</span>
+                            <span class="task-date">27 окт</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2025 Контакты <a href="https://github.com/nizi52" target="_blank" class="github-link">GitHub</a></p>
+        </div>
+    </footer>
+</body>
+</html>
