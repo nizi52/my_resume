@@ -10,48 +10,10 @@ body {
     line-height: 1.6;
     color: #333;
     background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
-}
-
-.submit-btn {
-    background: linear-gradient(135deg, #b0beff 0%, #c183ff 100%);
-    color: white;
-    border: none;
-    padding: 15px 35px;
-    font-size: 1.1rem;
-    border-radius: 30px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-weight: 600;
-    box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
-}
-
-.submit-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-}
-
-.contact-item {
+    min-height: 100vh;
     display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
-    padding: 1rem;
-    background: #f8f9fa;
-    border-radius: 10px;
-    transition: all 0.3s ease;
+    flex-direction: column;
 }
-
-.contact-item:hover {
-    background: #ecf0f1;
-    transform: translateX(5px);
-}
-
-.contact-icon {
-    font-size: 1.5rem;
-}
-
-
 
 .container {
     max-width: 1200px;
@@ -61,7 +23,7 @@ body {
 
 /* Навигация */
 .navbar {
-    background: linear-gradient(90deg, #667eea 0%, #764ba2);
+    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
     color: white;
     padding: 1rem 0;
     position: fixed;
@@ -84,18 +46,19 @@ body {
     display: flex;
     align-items: center;
     gap: 15px;
-}   
+}
 
 .logo {
     width: 45px;
     height: 45px;
-    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+    background: white;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: bold;
     font-size: 1.2rem;
+    color: #667eea;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
@@ -122,9 +85,9 @@ body {
 
 .nav-menu a:hover,
 .nav-menu a.active {
-    background: linear-gradient(135deg, #3498db, #2980b9);
+    background: rgba(255, 255, 255, 0.2);
     transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3);
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
 }
 
 /* Герой-секция */
@@ -137,16 +100,6 @@ body {
     overflow: hidden;
 }
 
-.hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-size: cover;
-}
-
 .hero-container {
     max-width: 1200px;
     margin: 0 auto;
@@ -155,8 +108,6 @@ body {
     grid-template-columns: 1fr 1fr;
     gap: 50px;
     align-items: center;
-    position: relative;
-    z-index: 1;
 }
 
 .hero-text h1 {
@@ -185,6 +136,8 @@ body {
     transition: all 0.3s ease;
     font-weight: 600;
     box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
+    text-decoration: none;
+    display: inline-block;
 }
 
 .download-btn:hover {
@@ -205,11 +158,13 @@ body {
     justify-self: center;
     backdrop-filter: blur(10px);
     box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    overflow: hidden;
 }
 
 .photo-placeholder {
     font-size: 4rem;
     opacity: 0.9;
+    color: white;
 }
 
 /* Секция навыков */
@@ -231,7 +186,7 @@ body {
 .skills-container {
     max-width: 700px;
     margin: 0 auto;
-    background: linear-gradient(210deg, #667eea , #764ba2);
+    background: rgba(255, 255, 255, 0.9);
     padding: 3rem;
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.2);
@@ -265,7 +220,6 @@ body {
 
 .progress {
     height: 100%;
-    background: linear-gradient(90deg, #3498db, #2980b9);
     border-radius: 10px;
     transition: width 1s ease-in-out;
     position: relative;
@@ -288,15 +242,27 @@ body {
     100% { transform: translateX(100%); }
 }
 
-.html-css { width: 90%; background: linear-gradient(90deg, #e44d26, #f16529); }
-.javascript { width: 80%; background: linear-gradient(90deg, #f7df1e, #d4bb0c); }
-.bootstrap { width: 85%; background: linear-gradient(90deg, #7952b3, #5a3d8e); }
-.react { width: 60%; background: linear-gradient(90deg, #61dafb, #21a0c4); }
+.html-css { 
+    width: 90%; 
+    background: linear-gradient(90deg, #e44d26, #f16529); 
+}
+.javascript { 
+    width: 80%; 
+    background: linear-gradient(90deg, #f7df1e, #d4bb0c); 
+}
+.bootstrap { 
+    width: 85%; 
+    background: linear-gradient(90deg, #7952b3, #5a3d8e); 
+}
+.react { 
+    width: 60%; 
+    background: linear-gradient(90deg, #61dafb, #21a0c4); 
+}
 
 /* Секция проектов */
 .projects-section {
     padding: 100px 0;
-    background: linear-gradient(90deg, #667eea, #764ba2 0%, 100%);
+    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
 }
 
 .projects-section h2 {
@@ -317,7 +283,7 @@ body {
 }
 
 .project-card {
-    background: linear-gradient(325deg, #667eea 0%, #764ba2 100%);
+    background: rgba(255, 255, 255, 0.9);
     border-radius: 20px;
     padding: 2.5rem 2rem;
     text-align: center;
@@ -371,10 +337,8 @@ footer {
     color: white;
     text-align: center;
     padding: 1.5rem 0;
-    position: relative;
     margin-top: auto;
 }
-
 
 .github-link {
     color: #3498db;
@@ -409,158 +373,23 @@ footer {
 .project-card:nth-child(3) { animation-delay: 0.3s; }
 .project-card:nth-child(4) { animation-delay: 0.4s; }
 
-/* Адаптивность */
-@media (max-width: 768px) {
-    .hero-container {
-        grid-template-columns: 1fr;
-        text-align: center;
-        gap: 30px;
-    }
-    
-    .hero-text h1 {
-        font-size: 2.2rem;
-    }
-    
-    .hero-text p {
-        font-size: 1.1rem;
-    }
-    
-    .hero-image {
-        width: 250px;
-        height: 250px;
-        order: -1;
-    }
-    
-    .nav-menu {
-        gap: 0.8rem;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-    
-    .nav-container {
-        flex-direction: column;
-        gap: 1rem;
-    }
-    
-    .skills-container {
-        padding: 2rem 1.5rem;
-        margin: 0 20px;
-    }
-    
-    .projects-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-        padding: 0 20px;
-    }
-    
-    .skills-section h2,
-    .projects-section h2 {
-        font-size: 2.2rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .hero-text h1 {
-        font-size: 1.8rem;
-    }
-    
-    .hero {
-        padding: 120px 0 60px;
-    }
-    
-    .skills-section,
-    .projects-section {
-        padding: 60px 0;
-    }
-    
-    .nav-menu a {
-        padding: 0.5rem 0.8rem;
-        font-size: 0.9rem;
-    }
-}
-
-/* В файле styles.css добавим эти медиа-запросы */
-
-/* Адаптивность для дневника */
-@media (max-width: 768px) {
-    .diary-layout {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-    }
-    
-    .progress-section,
-    .tasks-section {
-        margin: 0 10px;
-    }
-    
-    .course-item {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.5rem;
-    }
-    
-    .course-item span:first-child {
-        width: 100%;
-    }
-    
-    .progress-bar {
-        width: 100%;
-    }
-}
-
-/* Адаптивность для контактов */
-@media (max-width: 768px) {
-    .contacts-layout {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-    }
-    
-    .contact-form,
-    .contact-info {
-        margin: 0 10px;
-    }
-    
-    .contact-item {
-        flex-direction: column;
-        text-align: center;
-        gap: 0.5rem;
-    }
-    
-    .contact-icon {
-        font-size: 2rem;
-    }
-}
-
-/* Общие улучшения для мобильной версии */
-@media (max-width: 768px) {
-    .page-header h1 {
-        font-size: 2rem;
-    }
-    
-    .page-header p {
-        font-size: 1rem;
-    }
-    
-    .container {
-        padding: 0 15px;
-    }
-}
-
 /* Стили для дополнительных страниц */
 .page-header {
     text-align: center;
     margin-bottom: 3rem;
+    padding-top: 100px;
 }
 
 .page-header h1 {
     font-size: 2.8rem;
-    color: #2c3e50;
+    color: white;
     margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
 }
 
 .page-header p {
     font-size: 1.2rem;
-    color: #1a1a1a;
+    color: rgba(255, 255, 255, 0.9);
 }
 
 /* Страница проектов */
@@ -574,18 +403,19 @@ footer {
 
 .pro-btn {
     padding: 0.8rem 1.5rem;
-    border: 2px solid #656565b2;
-    background: linear-gradient(325deg, #667eea 0%, #764ba2 100%);
-    color: #ffffff;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
     border-radius: 25px;
     cursor: pointer;
     transition: all 0.3s ease;
     font-weight: 600;
+    backdrop-filter: blur(10px);
 }
 
 .pro-btn.active,
 .pro-btn:hover {
-    background: #3498db;
+    background: rgba(255, 255, 255, 0.2);
     color: white;
     transform: translateY(-2px);
 }
@@ -597,13 +427,14 @@ footer {
 }
 
 .project-card-large {
-    background: linear-gradient(325deg, #667eea 0%, #764ba2 100%);
+    background: rgba(255, 255, 255, 0.9);
     padding: 2.5rem;
     border-radius: 20px;
     box-shadow: 0 8px 25px rgba(0,0,0,0.1);
     transition: all 0.3s ease;
     text-align: center;
-    border: 1px solid rgba(255, 255, 255, 0.2);}
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
 
 .project-card-large:hover {
     transform: translateY(-5px);
@@ -613,6 +444,7 @@ footer {
 .project-icon {
     font-size: 4rem;
     margin-bottom: 1.5rem;
+    color: #667eea;
 }
 
 .project-card-large h3 {
@@ -650,16 +482,16 @@ footer {
     gap: 3rem;
     max-width: 1000px;
     margin: 0 auto;
-    
 }
 
 .progress-section,
 .tasks-section {
-    background: linear-gradient(325deg, #667eea 0%, #764ba2 100%);
+    background: rgba(255, 255, 255, 0.9);
     padding: 2.5rem;
     border-radius: 20px;
     box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);}
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
 
 .progress-section h2,
 .tasks-section h2 {
@@ -736,7 +568,7 @@ footer {
 }
 
 .task-date {
-    color: #000000;
+    color: #7f8c8d;
     font-size: 0.9rem;
 }
 
@@ -750,7 +582,7 @@ footer {
 }
 
 .contact-form {
-    background: linear-gradient(325deg, #667eea 0%, #764ba2 100%);
+    background: rgba(255, 255, 255, 0.9);
     padding: 2.5rem;
     border-radius: 20px;
     box-shadow: 0 8px 25px rgba(0,0,0,0.1);
@@ -758,7 +590,7 @@ footer {
 }
 
 .contact-info {
-    background: linear-gradient(325deg, #667eea 0%, #764ba2 100%);
+    background: rgba(255, 255, 255, 0.9);
     padding: 2.5rem;
     border-radius: 20px;
     box-shadow: 0 8px 25px rgba(0,0,0,0.1);
@@ -773,35 +605,25 @@ footer {
     font-size: 1.8rem;
 }
 
-.profile-photo {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 50%;
-    display: block;
-}
-
-.hero-image {
-    width: 320px;
-    height: 320px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 50%;
+.contact-item {
     display: flex;
     align-items: center;
-    justify-content: center;
-    border: 4px solid rgba(255, 255, 255, 0.2);
-    justify-self: center;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
-    overflow: hidden; /* Важно: обрезает углы картинки */
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 10px;
+    transition: all 0.3s ease;
 }
 
-.photo-placeholder {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.contact-item:hover {
+    background: #ecf0f1;
+    transform: translateX(5px);
+}
+
+.contact-icon {
+    font-size: 1.5rem;
+    color: #667eea;
 }
 
 .form-group {
@@ -822,5 +644,178 @@ footer {
     border: 2px solid #ecf0f1;
     border-radius: 10px;
     font-size: 1rem;
-    transition: border-color 0
+    transition: border-color 0.3s ease;
+    font-family: 'Arial', sans-serif;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.submit-btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 15px 35px;
+    font-size: 1.1rem;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    width: 100%;
+}
+
+.submit-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .hero-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 30px;
+    }
+    
+    .hero-text h1 {
+        font-size: 2.2rem;
+    }
+    
+    .hero-text p {
+        font-size: 1.1rem;
+    }
+    
+    .hero-image {
+        width: 250px;
+        height: 250px;
+        order: -1;
+    }
+    
+    .nav-menu {
+        gap: 0.8rem;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .nav-container {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .skills-container {
+        padding: 2rem 1.5rem;
+        margin: 0 20px;
+    }
+    
+    .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 0 20px;
+    }
+    
+    .skills-section h2,
+    .projects-section h2 {
+        font-size: 2.2rem;
+    }
+    
+    /* Адаптивность для дневника */
+    .diary-layout {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .progress-section,
+    .tasks-section {
+        margin: 0 10px;
+    }
+    
+    .course-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    
+    .course-item span:first-child {
+        width: 100%;
+    }
+    
+    .progress-bar {
+        width: 100%;
+    }
+    
+    /* Адаптивность для контактов */
+    .contacts-layout {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .contact-form,
+    .contact-info {
+        margin: 0 10px;
+    }
+    
+    .contact-item {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.5rem;
+    }
+    
+    .contact-icon {
+        font-size: 2rem;
+    }
+    
+    /* Общие улучшения для мобильной версии */
+    .page-header h1 {
+        font-size: 2rem;
+    }
+    
+    .page-header p {
+        font-size: 1rem;
+    }
+    
+    .container {
+        padding: 0 15px;
+    }
+    
+    .projects-grid-extended {
+        grid-template-columns: 1fr;
+        padding: 0 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-text h1 {
+        font-size: 1.8rem;
+    }
+    
+    .hero {
+        padding: 120px 0 60px;
+    }
+    
+    .skills-section,
+    .projects-section {
+        padding: 60px 0;
+    }
+    
+    .nav-menu a {
+        padding: 0.5rem 0.8rem;
+        font-size: 0.9rem;
+    }
+    
+    .project-card-large,
+    .contact-form,
+    .contact-info,
+    .progress-section,
+    .tasks-section {
+        padding: 1.5rem;
+    }
 }
