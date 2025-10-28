@@ -32,8 +32,10 @@
             <div class="hero-container">
                 <div class="hero-text">
                     <h1>Привет! Я студент<br>группы ЭФБО-07-24</h1>
-                    <p>Увлекаюсь веб-разработкой и создаю современные интерфейсы</p>
-                    <button class="download-btn" onclick="downloadResume()">Скачать резюме</button>
+                    <p>Увлекаюсь веб-разработкой и всяким еще</p>
+                    <a href="/assets/resume.pdf" download class="download-btn">
+                        Скачать резюме
+                    </a>
                 </div>
                 <div class="hero-image">
                     <div class="photo-placeholder"><img src="/images/icons/picture1.png" class="profile-photo"></div>
@@ -94,22 +96,17 @@
                     <div class="project-card">
                         <div class="project-placeholder">🎨</div>
                         <h3>Личный сайт</h3>
-                        <p>HTML, CSS</p>
+                        <p class="tech-tag">HTML, CSS</p>
                     </div>
                     <div class="project-card">
-                        <div class="project-placeholder">📱</div>
-                        <h3>Todo-приложение</h3>
-                        <p>JavaScript</p>
+                        <div class="project-placeholder">♟️</div>
+                        <h3>Терминальные шахматы</h3>
+                        <p class="tech-tag">Python</p>
                     </div>
                     <div class="project-card">
-                        <div class="project-placeholder">🛒</div>
-                        <h3>Интернет-магазин</h3>
-                        <p>React</p>
-                    </div>
-                    <div class="project-card">
-                        <div class="project-placeholder">💼</div>
-                        <h3>Портфолио</h3>
-                        <p>Bootstrap</p>
+                        <div class="project-placeholder">🔐</div>
+                        <h3>Генератор паролей</h3>
+                        <p class="tech-tag">C++</p>
                     </div>
                 </div>
             </div>
@@ -122,12 +119,5 @@
             <p>© 2025 Контакты <a href="https://github.com/nizi52" target="_blank" class="github-link">GitHub</a></p>
         </div>
     </footer>
-
-    <script>
-        function downloadResume() {
-            alert('Резюме будет скачано! В реальном проекте здесь будет ссылка на PDF файл.');
-            // В реальном проекте: window.open('assets/resume.pdf', '_blank');
-        }
-    </script>
 </body>
 </html>

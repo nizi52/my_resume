@@ -5,6 +5,224 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Портфолио - Дневник</title>
     <link rel="stylesheet" href="../styles/styles.css">
+    <style>
+        /* БАЗОВЫЕ СТИЛИ ДЛЯ ПК */
+        .diary-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            align-items: start;
+        }
+
+        .progress-section,
+        .tasks-section {
+            background: linear-gradient(325deg, #667eea 0%, #764ba2 100%);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .progress-section h2,
+        .tasks-section h2 {
+            color: #2c3e50;
+            margin-bottom: 2rem;
+            text-align: center;
+            font-size: 1.8rem;
+        }
+
+        .course-progress {
+            width: 100%;
+        }
+
+        .course-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            gap: 1rem;
+        }
+
+        .course-item span:first-child {
+            flex: 1;
+            font-weight: 500;
+            color: #2c3e50;
+            min-width: 120px;
+        }
+
+        .course-item span:last-child {
+            font-weight: 600;
+            color: #3498db;
+            min-width: 40px;
+            text-align: right;
+        }
+
+        /* КРАСИВЫЕ ПРОГРЕСС-БАРЫ ДЛЯ ПК */
+        .progress-container {
+            flex: 2;
+            min-width: 150px;
+            background: linear-gradient(135deg, #ecf0f1, #bdc3c7);
+            height: 16px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 
+                inset 0 2px 4px rgba(0,0,0,0.1),
+                0 2px 8px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .progress-fill {
+            height: 100%;
+            border-radius: 10px;
+            position: relative;
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 
+                inset 0 -2px 4px rgba(255,255,255,0.3),
+                0 2px 6px rgba(0,0,0,0.2);
+        }
+
+        /* Анимация заполнения */
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(255,255,255,0.4), 
+                transparent);
+            animation: shimmer 2s infinite;
+            border-radius: 10px;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* Градиенты для разных курсов */
+        .web-dev { background: linear-gradient(135deg, #3498db, #2980b9); }
+        .javascript { background: linear-gradient(135deg, #f39c12, #e67e22); }
+        .react { background: linear-gradient(135deg, #9b59b6, #8e44ad); }
+
+        /* ФИКС ДЛЯ ФУТЕРА */
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        main {
+            flex: 1;
+        }
+
+        footer {
+            margin-top: auto;
+        }
+
+        /* КРАСИВАЯ МОБИЛЬНАЯ ВЕРСИЯ */
+        @media (max-width: 768px) {
+            .diary-layout {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                padding: 0 15px;
+            }
+            
+            .progress-section,
+            .tasks-section {
+                margin: 0;
+                padding: 2rem;
+                border-radius: 15px;
+            }
+            
+            .course-item {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 1rem;
+                padding: 1.5rem;
+                background: rgba(255,255,255,0.15);
+                border-radius: 15px;
+                margin-bottom: 1.5rem;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+                border: 1px solid rgba(255,255,255,0.2);
+                backdrop-filter: blur(10px);
+            }
+            
+            .course-item span:first-child {
+                width: 100%;
+                text-align: center;
+                font-size: 1.3rem;
+                font-weight: 600;
+                color: #2c3e50;
+                margin-bottom: 0.5rem;
+            }
+            
+            .progress-container {
+                width: 100% !important;
+                height: 22px !important;
+                min-width: 100% !important;
+                background: linear-gradient(135deg, #dfe6e9, #b2bec3) !important;
+                border-radius: 12px !important;
+                box-shadow: 
+                    inset 0 3px 6px rgba(0,0,0,0.1),
+                    0 4px 12px rgba(0,0,0,0.15) !important;
+            }
+            
+            .progress-fill {
+                height: 100% !important;
+                border-radius: 12px !important;
+                box-shadow: 
+                    inset 0 -3px 6px rgba(255,255,255,0.4),
+                    0 3px 8px rgba(0,0,0,0.25) !important;
+            }
+            
+            .course-item span:last-child {
+                text-align: center;
+                font-size: 1.2rem;
+                font-weight: 700;
+                background: linear-gradient(135deg, #91d0fa, #2980b9);
+                color: white;
+                padding: 8px 16px;
+                border-radius: 20px;
+                display: inline-block;
+                box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+                margin-top: 0.5rem;
+            }
+
+            .progress-section h2,
+            .tasks-section h2 {
+                font-size: 1.6rem;
+                margin-bottom: 1.5rem;
+                color: #2c3e50;
+                text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+        }
+
+        /* Анимация появления */
+        .course-item {
+            animation: slideInUp 0.6s ease-out;
+        }
+
+        .course-item:nth-child(1) { animation-delay: 0.1s; }
+        .course-item:nth-child(2) { animation-delay: 0.2s; }
+        .course-item:nth-child(3) { animation-delay: 0.3s; }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -24,7 +242,7 @@
         </nav>
     </header>
 
-    <main style="margin-top: 100px; padding: 2rem;">
+    <main style="margin-top: 100px; padding: 1rem;">
         <div class="container">
             <div class="page-header">
                 <h1>Учебный дневник</h1>
@@ -37,22 +255,22 @@
                     <div class="course-progress">
                         <div class="course-item">
                             <span>Веб-разработка</span>
-                            <div class="progress-bar">
-                                <div class="progress" style="width: 90%; background: #3498db;"></div>
+                            <div class="progress-container">
+                                <div class="progress-fill web-dev" style="width: 90%;"></div>
                             </div>
                             <span>90%</span>
                         </div>
                         <div class="course-item">
                             <span>JavaScript</span>
-                            <div class="progress-bar">
-                                <div class="progress" style="width: 70%; background: #f39c12;"></div>
+                            <div class="progress-container">
+                                <div class="progress-fill javascript" style="width: 70%;"></div>
                             </div>
                             <span>70%</span>
                         </div>
                         <div class="course-item">
                             <span>React</span>
-                            <div class="progress-bar">
-                                <div class="progress" style="width: 50%; background: #9b59b6;"></div>
+                            <div class="progress-container">
+                                <div class="progress-fill react" style="width: 50%;"></div>
                             </div>
                             <span>50%</span>
                         </div>
@@ -88,5 +306,21 @@
             <p>© 2025 Контакты <a href="https://github.com/nizi52" target="_blank" class="github-link">GitHub</a></p>
         </div>
     </footer>
+
+    <script>
+        // Анимация прогресс-баров при загрузке
+        document.addEventListener('DOMContentLoaded', function() {
+            const progressFills = document.querySelectorAll('.progress-fill');
+            
+            progressFills.forEach(fill => {
+                const width = fill.style.width;
+                fill.style.width = '0';
+                
+                setTimeout(() => {
+                    fill.style.width = width;
+                }, 300);
+            });
+        });
+    </script>
 </body>
 </html>

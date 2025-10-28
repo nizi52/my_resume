@@ -5,6 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Портфолио - Контакты</title>
     <link rel="stylesheet" href="../styles/styles.css">
+    <style>
+        /* Дополнительные стили для мобильной адаптации */
+        @media (max-width: 768px) {
+            .contacts-layout {
+                grid-template-columns: 1fr !important;
+                gap: 2rem;
+                padding: 0 10px;
+            }
+            
+            .contact-form,
+            .contact-info {
+                margin: 0 !important;
+                padding: 1.5rem !important;
+            }
+            
+            .contact-item {
+                flex-direction: column;
+                text-align: center;
+                gap: 0.5rem;
+                padding: 1rem;
+            }
+            
+            .contact-icon {
+                font-size: 2rem;
+            }
+            
+            .form-group input,
+            .form-group textarea {
+                font-size: 16px; /* Убирает zoom на iOS */
+            }
+            
+            .submit-btn {
+                width: 100%;
+                padding: 15px;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -24,7 +61,7 @@
         </nav>
     </header>
 
-    <main style="margin-top: 100px; padding: 2rem;">
+    <main style="margin-top: 100px; padding: 1rem;">
         <div class="container">
             <div class="page-header">
                 <h1>Свяжитесь со мной</h1>
@@ -46,7 +83,7 @@
                             <label for="message">Сообщение:</label>
                             <textarea id="message" name="message" rows="5" required></textarea>
                         </div>
-                        <button class="submit-btn">Отправить сообщение</button>
+                        <button type="submit" class="submit-btn">Отправить сообщение</button>
                     </form>
                 </div>
                 
