@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Портфолио - Контакты</title>
+    <link rel="stylesheet" href="../styles/styles.css">
+    <style>
+        :root {
+            color-scheme: light dark;
+        }
+
+        .contacts-layout {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: clamp(2rem, 4vw, 4rem);
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 clamp(1rem, 2vw, 2rem);
+        }
+
+        .contact-form,
+        .contact-info {
+            padding: clamp(1.5rem, 3vw, 2.5rem);
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: #fff;
+        }
+
+        .contact-info h3 {
+            color: #2c3e50;
+            margin-bottom: 2rem;
+            text-align: center;
+            font-size: clamp(1.4rem, 2vw, 1.8rem);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e1e8ed;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            background: #3498db;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-height: 44px;
+        }
+
+        .submit-btn:hover,
+        .submit-btn:focus {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            background: rgba(255,255,255,0.15);
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: transform 0.2s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateX(5px);
+        }
+
+        .contact-icon {
+            font-size: 1.5rem;
+            width: 40px;
+            text-align: center;
+        }
+
+        .github-link {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .github-link:hover,
+        .github-link:focus {
+            text-decoration: underline;
+            outline: none;
+        }
+
+        .error-message {
+            color: #e74c3c;
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+            display: block;
+        }
+
+        .success-message {
+            color: #27ae60;
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+            display: block;
+        }
+
+        .visually-hidden {
+            position: absolute !important;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .contacts-layout {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                padding: 0 10px;
+            }
+            
+            .contact-form,
+            .contact-info {
+                margin: 0;
+                padding: 1.5rem;
+            }
+            
+            .contact-item {
+                flex-direction: column;
+                text-align: center;
+                gap: 0.5rem;
+                padding: 1rem;
+            }
+            
+            .contact-icon {
+                font-size: 2rem;
+            }
+            
+            .form-group input,
+            .form-group textarea {
+                font-size: 16px;
+            }
+            
+            .submit-btn {
+                width: 100%;
+                padding: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .contacts-layout {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-item {
+                padding: 0.75rem;
+            }
+        }
+
+        /* Уважение к снижению движения */
+        @media (prefers-reduced-motion: reduce) {
+            .contact-item,
+            .submit-btn {
+                transition: none;
+            }
+            
+            .contact-item:hover {
+                transform: none;
+            }
+            
+            .submit-btn:hover,
+            .submit-btn:focus {
+                transform: none;
+            }
+        }
+
+        /* Повышенный контраст */
+        @media (prefers-contrast: more) {
+            .contact-form,
+            .contact-info {
+                border: 2px solid #2c3e50;
+            }
+            
+            .form-group input,
+            .form-group textarea {
+                border: 2px solid #2c3e50;
+            }
+            
+            .submit-btn {
+                border: 2px solid #2c3e50;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a class="skip-link" href="#main">Перейти к основному содержимому</a>
+    
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="logo-section">
+                    <div class="logo">
+                        <img src="../images/icons/picture1.png" 
+                             alt="Логотип" 
+                             class="logo"
+                             width="40" 
+                             height="40">
+                    </div>
+                    <div class="name">Зайнуллин Яков</div>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="../index.html">Главная</a></li>
+                    <li><a href="projects.html">Проекты</a></li>
+                    <li><a href="diary.html">Дневник</a></li>
+                    <li><a href="contacts.html" class="active">Контакты</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main id="main" style="margin-top: 100px; padding: 1rem;">
+        <div class="container">
+            <div class="page-header">
+                <h1>Свяжитесь со мной</h1>
+                <p>Буду рад обсудить возможности сотрудничества</p>
+            </div>
+            
+            <div class="contacts-layout">
+                <div class="contact-form">
+                    <form id="contactForm" novalidate>
+                        <div class="form-group">
+                            <label for="name">Имя:</label>
+                            <input type="text" id="name" name="name" required 
+                                   aria-describedby="name-hint name-error"
+                                   aria-required="true">
+                            <small id="name-hint" class="visually-hidden">Введите ваше полное имя</small>
+                            <span id="name-error" class="error-message visually-hidden" role="alert"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="email" id="email" name="email" required
+                                   aria-describedby="email-hint email-error"
+                                   aria-required="true">
+                            <small id="email-hint" class="visually-hidden">Мы ответим на этот адрес</small>
+                            <span id="email-error" class="error-message visually-hidden" role="alert"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Сообщение:</label>
+                            <textarea id="message" name="message" rows="5" required
+                                      aria-describedby="message-hint message-error"
+                                      aria-required="true"></textarea>
+                            <small id="message-hint" class="visually-hidden">Опишите ваше предложение или вопрос</small>
+                            <span id="message-error" class="error-message visually-hidden" role="alert"></span>
+                        </div>
+                        <button type="submit" class="submit-btn">Отправить сообщение</button>
+                    </form>
+                </div>
+                
+                <div class="contact-info">
+                    <h3>Контакты</h3>
+                    <div class="contact-item">
+                        <span class="contact-icon">📧</span>
+                        <span>student@edu.ru</span>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">💻</span>
+                        <span>GitHub: <a href="https://github.com/nizi52" target="_blank" class="github-link" rel="noopener">nizi52</a></span>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">🏙️</span>
+                        <span>Москва, Россия</span>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">📱</span>
+                        <span>Доступен для проектов</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2025 Контакты <a href="https://github.com/nizi52" target="_blank" class="github-link" rel="noopener">GitHub</a></p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Сброс ошибок
+            resetErrors();
+            
+            // Валидация
+            const name = document.getElementById('name');
+            const email = document.getElementById('email');
+            const message = document.getElementById('message');
+            
+            let isValid = true;
+            
+            // Валидация имени
+            if (!name.value.trim()) {
+                showError('name-error', 'Пожалуйста, введите ваше имя');
+                isValid = false;
+            }
+            
+            // Валидация email
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!email.value.trim()) {
+                showError('email-error', 'Пожалуйста, введите email адрес');
+                isValid = false;
+            } else if (!emailRegex.test(email.value)) {
+                showError('email-error', 'Пожалуйста, введите корректный email адрес');
+                isValid = false;
+            }
+            
+            // Валидация сообщения
+            if (!message.value.trim()) {
+                showError('message-error', 'Пожалуйста, введите сообщение');
+                isValid = false;
+            } else if (message.value.trim().length < 10) {
+                showError('message-error', 'Сообщение должно содержать не менее 10 символов');
+                isValid = false;
+            }
+            
+            if (isValid) {
+                // Имитация отправки
+                const submitBtn = this.querySelector('.submit-btn');
+                const originalText = submitBtn.textContent;
+                
+                submitBtn.textContent = 'Отправка...';
+                submitBtn.disabled = true;
+                
+                setTimeout(() => {
+                    alert('Сообщение отправлено! Спасибо за ваше обращение.');
+                    this.reset();
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                }, 1500);
+            }
+        });
+
+        function showError(elementId, message) {
+            const errorElement = document.getElementById(elementId);
+            errorElement.textContent = message;
+            errorElement.classList.remove('visually-hidden');
+            
+            // Фокус на первое поле с ошибкой
+            const firstErrorField = document.querySelector('.error-message:not(.visually-hidden)');
+            if (firstErrorField) {
+                const fieldId = firstErrorField.id.replace('-error', '');
+                document.getElementById(fieldId).focus();
+            }
+        }
+
+        function resetErrors() {
+            const errorElements = document.querySelectorAll('.error-message');
+            errorElements.forEach(element => {
+                element.textContent = '';
+                element.classList.add('visually-hidden');
+            });
+        }
+
+        // Валидация в реальном времени
+        document.querySelectorAll('#contactForm input, #contactForm textarea').forEach(field => {
+            field.addEventListener('blur', function() {
+                const fieldId = this.id;
+                const errorElement = document.getElementById(fieldId + '-error');
+                
+                if (this.value.trim() === '') {
+                    showError(fieldId + '-error', 'Это поле обязательно для заполнения');
+                } else {
+                    errorElement.textContent = '';
+                    errorElement.classList.add('visually-hidden');
+                }
+                
+                // Специфическая валидация для email
+                if (fieldId === 'email' && this.value.trim()) {
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailRegex.test(this.value)) {
+                        showError('email-error', 'Пожалуйста, введите корректный email адрес');
+                    }
+                }
+            });
+        });
+
+        // Улучшение доступности для скринридеров
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('contactForm');
+            form.setAttribute('aria-label', 'Форма обратной связи');
+        });
+    </script>
+</body>
+</html>

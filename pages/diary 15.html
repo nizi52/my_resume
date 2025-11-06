@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Портфолио - Дневник</title>
+    <link rel="stylesheet" href="../styles/styles.css">
+    <style>
+        :root {
+            color-scheme: light dark;
+        }
+
+        /* БАЗОВЫЕ СТИЛИ ДЛЯ ПК */
+        .diary-layout {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: clamp(1rem, 2vw, 3rem);
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: start;
+            padding: 0 clamp(1rem, 2vw, 2rem);
+        }
+
+        .progress-section,
+        .tasks-section {
+            padding: clamp(1.5rem, 3vw, 2.5rem);
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: #fff;
+        }
+
+        .progress-section h2,
+        .tasks-section h2 {
+            color: #2c3e50;
+            margin-bottom: clamp(1.5rem, 3vw, 2rem);
+            text-align: center;
+            font-size: clamp(1.4rem, 2vw, 1.8rem);
+        }
+
+        .course-progress {
+            width: 100%;
+        }
+
+        .course-item {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 1rem;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding: 1.25rem;
+            background: rgba(255,255,255,0.15);
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .course-item span:first-child {
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: clamp(1rem, 1.2vw, 1.2rem);
+        }
+
+        .course-item span:last-child {
+            font-weight: 700;
+            color: #3498db;
+            font-size: clamp(1rem, 1.2vw, 1.2rem);
+        }
+
+        /* КРАСИВЫЕ ПРОГРЕСС-БАРЫ */
+        .progress-container {
+            grid-column: 1 / -1;
+            width: 100%;
+            background: linear-gradient(135deg, #ecf0f1, #bdc3c7);
+            height: clamp(12px, 2vw, 16px);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 
+                inset 0 2px 4px rgba(0,0,0,0.1),
+                0 2px 8px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .progress-fill {
+            height: 100%;
+            border-radius: 10px;
+            position: relative;
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 
+                inset 0 -2px 4px rgba(88, 81, 81, 0.74),
+                0 2px 6px rgba(0,0,0,0.2);
+        }
+
+        /* Анимация заполнения */
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(255,255,255,0.4), 
+                transparent);
+            animation: shimmer 2s infinite;
+            border-radius: 10px;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* Градиенты для разных курсов */
+        .web-dev { background: linear-gradient(135deg, #3498db, #2980b9); }
+        .javascript { background: linear-gradient(135deg, #f39c12, #e67e22); }
+        .react { background: linear-gradient(135deg, #9b59b6, #8e44ad); }
+        .bootstrap { background: linear-gradient(135deg, #52b442, #81dd53); }
+
+        /* СЕТКА ЗАДАЧ */
+        .task-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+        }
+
+        .task-item {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.25rem;
+            background: rgba(255,255,255,0.15);
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.2);
+            min-width: 0;
+            transition: transform 0.2s ease;
+        }
+
+        .task-item:hover {
+            transform: translateY(-2px);
+        }
+
+        .task-check {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .task-text {
+            font-weight: 500;
+            color: #2c3e50;
+            overflow-wrap: anywhere;
+        }
+
+        .task-date {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+
+        .completed .task-check { color: #27ae60; }
+        .in-progress .task-check { color: #f39c12; }
+
+        /* АДАПТИВНОСТЬ */
+        @media (max-width: 768px) {
+            .diary-layout {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                padding: 0 15px;
+            }
+            
+            .progress-section,
+            .tasks-section {
+                margin: 0;
+                padding: 2rem;
+            }
+            
+            .course-item {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 1rem;
+            }
+            
+            .course-item span:first-child {
+                font-size: 1.3rem;
+            }
+            
+            .progress-container {
+                height: 22px;
+            }
+            
+            .course-item span:last-child {
+                font-size: 1.2rem;
+                background: linear-gradient(135deg, #91d0fa, #2980b9);
+                color: white;
+                padding: 8px 16px;
+                border-radius: 20px;
+                display: inline-block;
+            }
+
+            .task-item {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 0.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .task-list {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Анимация появления */
+        .course-item,
+        .task-item {
+            animation: slideInUp 0.6s ease-out;
+        }
+
+        .course-item:nth-child(1) { animation-delay: 0.1s; }
+        .course-item:nth-child(2) { animation-delay: 0.2s; }
+        .course-item:nth-child(3) { animation-delay: 0.3s; }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Уважение к снижению движения */
+        @media (prefers-reduced-motion: reduce) {
+            .progress-fill,
+            .task-item,
+            .course-item {
+                transition: none;
+                animation: none;
+            }
+            
+            .progress-fill::after {
+                animation: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a class="skip-link" href="#main">Перейти к основному содержимому</a>
+    
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="logo-section">
+                    <div class="logo">
+                        <img src="../images/icons/picture1.png" 
+                             alt="Логотип" 
+                             class="logo"
+                             width="40" 
+                             height="40">
+                    </div>
+                    <div class="name">Зайнуллин Яков</div>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="../index.html">Главная</a></li>
+                    <li><a href="projects.html">Проекты</a></li>
+                    <li><a href="diary.html" class="active">Дневник</a></li>
+                    <li><a href="contacts.html">Контакты</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main id="main" style="margin-top: 100px; padding: 1rem;">
+        <div class="container">
+            <div class="page-header">
+                <h1>Учебный дневник</h1>
+                <p>Отслеживание прогресса в обучении</p>
+            </div>
+            
+            <div class="diary-layout">
+                <div class="progress-section">
+                    <h2>Текущие курсы</h2>
+                    <div class="course-progress">
+                        <div class="course-item">
+                            <span>Веб-разработка</span>
+                            <div class="progress-container">
+                                <div class="progress-fill web-dev" style="width: 90%;"></div>
+                            </div>
+                            <span>90%</span>
+                        </div>
+                        <div class="course-item">
+                            <span>JavaScript</span>
+                            <div class="progress-container">
+                                <div class="progress-fill javascript" style="width: 70%;"></div>
+                            </div>
+                            <span>70%</span>
+                        </div>
+                        <div class="course-item">
+                            <span>React</span>
+                            <div class="progress-container">
+                                <div class="progress-fill react" style="width: 50%;"></div>
+                            </div>
+                            <span>50%</span>
+                        </div>
+                        <div class="course-item">
+                            <span>Bootstrap</span>
+                            <div class="progress-container">
+                                <div class="progress-fill bootstrap" style="width: 50%;"></div>
+                            </div>
+                            <span>50%</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tasks-section">
+                    <h2>Последние задачи</h2>
+                    <div class="task-list">
+                        <div class="task-item completed">
+                            <span class="task-check">✓</span>
+                            <span class="task-text">Верстка макета сайта</span>
+                            <span class="task-date">28 окт</span>
+                        </div>
+                        <div class="task-item in-progress">
+                            <span class="task-check">⟳</span>
+                            <span class="task-text">Работа с формами</span>
+                            <span class="task-date">27 окт</span>
+                        </div>
+                        <div class="task-item in-progress">
+                            <span class="task-check">⟳</span>
+                            <span class="task-text">Адаптивный дизайн</span>
+                            <span class="task-date">27 окт</span>
+                        </div>
+                        <div class="task-item completed">
+                            <span class="task-check">✓</span>
+                            <span class="task-text">Изучение Grid системы</span>
+                            <span class="task-date">26 окт</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2025 Контакты <a href="https://github.com/nizi52" target="_blank" class="github-link">GitHub</a></p>
+        </div>
+    </footer>
+
+    <script>
+        // Анимация прогресс-баров при загрузке
+        document.addEventListener('DOMContentLoaded', function() {
+            const progressFills = document.querySelectorAll('.progress-fill');
+            
+            progressFills.forEach(fill => {
+                const width = fill.style.width;
+                fill.style.width = '0';
+                
+                // Уважение к снижению движения
+                const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                
+                if (!reducedMotion) {
+                    setTimeout(() => {
+                        fill.style.width = width;
+                    }, 300);
+                } else {
+                    fill.style.width = width;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
