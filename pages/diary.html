@@ -237,6 +237,7 @@
                     <li><a href="projects.html">Проекты</a></li>
                     <li><a href="diary.html" class="active">Дневник</a></li>
                     <li><a href="contacts.html">Контакты</a></li>
+                    <li><a href="responsive-images.html">Адаптивность</a></li>
                 </ul>
             </div>
         </nav>
@@ -313,21 +314,6 @@
             <p>© 2025 Контакты <a href="https://github.com/nizi52" target="_blank" class="github-link">GitHub</a></p>
         </div>
     </footer>
-
-    <script>
-        // Анимация прогресс-баров при загрузке
-        document.addEventListener('DOMContentLoaded', function() {
-            const progressFills = document.querySelectorAll('.progress-fill');
-            
-            progressFills.forEach(fill => {
-                const width = fill.style.width;
-                fill.style.width = '0';
-                
-                setTimeout(() => {
-                    fill.style.width = width;
-                }, 300);
-            });
-        });
-    </script>
+    <script src="../scripts/script.js"></script>
 </body>
 </html>

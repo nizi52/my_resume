@@ -15,6 +15,7 @@
             width: 100%;
             height: 100%;
             background-color: rgba(0,0,0,0.8);
+            overflow-y: auto;
         }
 
         .modal-content {
@@ -213,6 +214,7 @@
                     <li><a href="projects.html" class="active">Проекты</a></li>
                     <li><a href="diary.html">Дневник</a></li>
                     <li><a href="contacts.html">Контакты</a></li>
+                    <li><a href="responsive-images.html">Адаптивность</a></li>
                 </ul>
             </div>
         </nav>
@@ -275,16 +277,37 @@
                 <div class="project-description">
                     <p>Современный адаптивный веб-сайт портфолио, созданный с использованием чистого HTML, CSS и JavaScript. Сайт демонстрирует лучшие практики веб-разработки и включает анимации, плавные переходы и полностью отзывчивый дизайн.</p>
                 </div>
-                
+
                 <div class="screenshots">
-                    <div class="screenshot-sticker" onclick="openImageModal('portfolio1')">
-                        🖥️
+                    <div class="screenshot-item">
+                        <picture>
+                            <source srcset="../images/icons/sitepict1.png 1x, ../images/icons/sitepict1.png 2x">
+                            <img src="../images/icons/sitepict1.png" 
+                                alt="Главная страница портфолио" 
+                                class="responsive-screenshot"
+                                onclick="openImageModal('portfolio1')"
+                                loading="lazy">
+                        </picture>
                     </div>
-                    <div class="screenshot-sticker" onclick="openImageModal('portfolio2')">
-                        📱
+                    <div class="screenshot-item">
+                        <picture>
+                            <source srcset="../images/icons/sitepict2.png 1x, ../images/icons/sitepict2.png 2x">
+                            <img src="../images/icons/sitepict2.png" 
+                                alt="Раздел ознакомления" 
+                                class="responsive-screenshot"
+                                onclick="openImageModal('portfolio2')"
+                                loading="lazy">
+                        </picture>
                     </div>
-                    <div class="screenshot-sticker" onclick="openImageModal('portfolio3')">
-                        🎨
+                    <div class="screenshot-item">
+                        <picture>
+                            <source srcset="../images/icons/sitepict3.png 1x, ../images/icons/sitepict3.png 2x">
+                            <img src="../images/icons/sitepict3.png" 
+                                alt="Раздел проектов" 
+                                class="responsive-screenshot"
+                                onclick="openImageModal('portfolio3')"
+                                loading="lazy">
+                        </picture>
                     </div>
                 </div>
 
@@ -313,15 +336,37 @@
                     <p>Консольная игра в шахматы с полной реализацией правил классических шахмат. Проект включает систему ходов, проверку шахов и матов.</p>
                 </div>
                 
+                <!-- ОБНОВИТЬ секцию screenshots в КАЖДОМ модальном окне -->
                 <div class="screenshots">
-                    <div class="screenshot-sticker" onclick="openImageModal('chess1')">
-                        ♟️
+                    <div class="screenshot-item">
+                        <picture>
+                            <source srcset="../images/icons/chesspict1.png 1x, ../images/icons/chesspict1.png 2x">
+                            <img src="../images/icons/chesspict1.png" 
+                                alt="Главная страница портфолио" 
+                                class="responsive-screenshot"
+                                onclick="openImageModal('chess1')"
+                                loading="lazy">
+                        </picture>
                     </div>
-                    <div class="screenshot-sticker" onclick="openImageModal('chess2')">
-                        ⚡
+                    <div class="screenshot-item">
+                        <picture>
+                            <source srcset="../images/icons/chesspict2.png 1x, ../images/icons/chesspict2.png 2x">
+                            <img src="../images/icons/chesspict2.png" 
+                                alt="Раздел ознакомления" 
+                                class="responsive-screenshot"
+                                onclick="openImageModal('chess2')"
+                                loading="lazy">
+                        </picture>
                     </div>
-                    <div class="screenshot-sticker" onclick="openImageModal('chess3')">
-                        🤖
+                    <div class="screenshot-item">
+                        <picture>
+                            <source srcset="../images/icons/chesspict3.png 1x, ../images/icons/chesspict3.png 2x">
+                            <img src="../images/icons/chesspict3.png" 
+                                alt="Раздел проектов" 
+                                class="responsive-screenshot"
+                                onclick="openImageModal('chess3')"
+                                loading="lazy">
+                        </picture>
                     </div>
                 </div>
 
@@ -351,14 +396,35 @@
                 </div>
                 
                 <div class="screenshots">
-                    <div class="screenshot-sticker" onclick="openImageModal('password1')">
-                        🔐
+                    <div class="screenshot-item">
+                        <picture>
+                            <source srcset="../images/icons/passpic1.png 1x, ../images/icons/passpic1.png 2x">
+                            <img src="../images/icons/passpic1.png" 
+                                alt="Главная страница портфолио" 
+                                class="responsive-screenshot"
+                                onclick="openImageModal('password1')"
+                                loading="lazy">
+                        </picture>
                     </div>
-                    <div class="screenshot-sticker" onclick="openImageModal('password2')">
-                        🖱️
+                    <div class="screenshot-item">
+                        <picture>
+                            <source srcset="../images/icons/passpic2.png 1x, ../images/icons/passpic2.png 2x">
+                            <img src="../images/icons/passpic2.png" 
+                                alt="Раздел ознакомления" 
+                                class="responsive-screenshot"
+                                onclick="openImageModal('password2')"
+                                loading="lazy">
+                        </picture>
                     </div>
-                    <div class="screenshot-sticker" onclick="openImageModal('password3')">
-                        📋
+                    <div class="screenshot-item">
+                        <picture>
+                            <source srcset="../images/icons/passpic3.png 1x, ../images/icons/passpic3.png 2x">
+                            <img src="../images/icons/passpic3.png" 
+                                alt="Раздел проектов" 
+                                class="responsive-screenshot"
+                                onclick="openImageModal('password3')"
+                                loading="lazy">
+                        </picture>
                     </div>
                 </div>
 
@@ -383,112 +449,6 @@
             <p>© 2025 Контакты <a href="https://github.com/nizi52" target="_blank" class="github-link">GitHub</a></p>
         </div>
     </footer>
-
-    <script>
-        // Функции для основного модального окна
-        function openModal(modalId) {
-            document.getElementById(modalId).style.display = 'block';
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeModal(modalId) {
-            document.getElementById(modalId).style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
-
-        // Функции для модального окна с изображением
-        function openImageModal(imageType) {
-            const imageModal = document.getElementById('imageModal');
-            const fullImage = document.getElementById('fullSizeImage');
-            const caption = document.getElementById('imageCaption');
-            
-            // Изображения для всех проектов
-            const images = {
-                // Портфолио
-                'portfolio1': {
-                    src: '../images/icons/sitepict1.png',
-                    text: 'Главная страница портфолио'
-                },
-                'portfolio2': {
-                    src: '../images/icons/sitepict2.png', 
-                    text: 'Раздел ознакомления'
-                },
-                'portfolio3': {
-                    src: '../images/icons/sitepict3.png',
-                    text: 'Раздле проектов'
-                },
-                
-                // Шахматы
-                'chess1': {
-                    src: '../images/icons/chesspict1.png',
-                    text: 'Игровое поле шахмат'
-                },
-                'chess2': {
-                    src: '../images/icons/chesspict2.png',
-                    text: 'Система ходов и правил'
-                },
-                'chess3': {
-                    src: '../images/icons/chesspict3.png',
-                    text: 'Вариации ходов'
-                },
-                
-                // Генератор паролей
-                'password1': {
-                    src: '../images/icons/passpic1.png',
-                    text: 'Главный интерфейс генератора паролей'
-                },
-                'password2': {
-                    src: '../images/icons/passpic2.png',
-                    text: 'Настройки генерации пароля'
-                },
-                'password3': {
-                    src: '../images/icons/passpic3.png',
-                    text: 'Генератор случайного числа'
-                }
-            };
-            
-            fullImage.src = images[imageType].src;
-            caption.textContent = images[imageType].text;
-            imageModal.style.display = 'block';
-        }
-
-        function closeImageModal() {
-            document.getElementById('imageModal').style.display = 'none';
-        }
-
-        // Закрытие по клику вне окна
-        window.onclick = function(event) {
-            const modals = document.getElementsByClassName('modal');
-            for (let modal of modals) {
-                if (event.target === modal) {
-                    modal.style.display = 'none';
-                    document.body.style.overflow = 'auto';
-                }
-            }
-            
-            const imageModal = document.getElementById('imageModal');
-            if (event.target === imageModal) {
-                imageModal.style.display = 'none';
-            }
-        }
-
-        // Закрытие по Escape
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape') {
-                const modals = document.getElementsByClassName('modal');
-                for (let modal of modals) {
-                    if (modal.style.display === 'block') {
-                        modal.style.display = 'none';
-                        document.body.style.overflow = 'auto';
-                    }
-                }
-                
-                const imageModal = document.getElementById('imageModal');
-                if (imageModal.style.display === 'block') {
-                    imageModal.style.display = 'none';
-                }
-            }
-        });
-    </script>
+    <script src="../scripts/script.js"></script>
 </body>
 </html>

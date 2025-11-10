@@ -20,6 +20,7 @@
                     <li><a href="pages/projects.html">Проекты</a></li>
                     <li><a href="pages/diary.html">Дневник</a></li>
                     <li><a href="pages/contacts.html">Контакты</a></li>
+                    <li><a href="responsive-images.html">Адаптивность</a></li>
                 </ul>
             </div>
         </nav>
@@ -37,9 +38,21 @@
                         Скачать резюме
                     </a>
                 </div>
-                <div class="hero-image">
-                    <div class="photo-placeholder"><img src="./images/icons/picture1.png" class="profile-photo"></div>
-                </div>
+                    <div class="hero-image">
+                        <picture>
+                            <!-- Для ретина дисплеев -->
+                            <source srcset="./images/icons/picture1.png 1x, ./images/icons/picture1.png 2x">
+                            <!-- Разные размеры для разных экранов -->
+                            <source media="(min-width: 1200px)" srcset="./images/icons/picture1.png">
+                            <source media="(min-width: 768px)" srcset="./images/icons/picture1.png">
+                            <img src="./images/icons/picture1.png" 
+                                alt="Фото Зайнуллина Якова" 
+                                class="profile-photo responsive-image"
+                                loading="lazy"
+                                width="320" 
+                                height="320">
+                        </picture>
+                    </div>
             </div>
         </section>
 
@@ -119,5 +132,6 @@
             <p>© 2025 Контакты <a href="https://github.com/nizi52" target="_blank" class="github-link">GitHub</a></p>
         </div>
     </footer>
+    <script src="./scripts/script.js"></script>
 </body>
 </html>
