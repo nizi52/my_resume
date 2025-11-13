@@ -6,7 +6,65 @@
     <title>Портфолио - Контакты</title>
     <link rel="stylesheet" href="../styles/styles.css">
     <style>
-        /* Дополнительные стили для мобильной адаптации */
+        /* Стили для доступности */
+        .required::after {
+            content: " *";
+            color: #e74c3c;
+        }
+        
+        .error-message {
+            color: #e74c3c;
+            font-size: 0.9rem;
+            margin-top: 0.3rem;
+            display: none;
+        }
+        
+        .fieldset-group {
+            border: 2px solid rgba(102, 126, 234, 0.3);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .legend {
+            font-weight: 600;
+            color: #2c3e50;
+            padding: 0 0.5rem;
+            background: white;
+        }
+        
+        /* Улучшенные индикаторы фокуса для Lighthouse */
+        .form-control:focus,
+        .submit-btn:focus,
+        .contact-item:focus,
+        .nav-menu a:focus {
+            outline: 3px solid #3498db;
+            outline-offset: 2px;
+        }
+        
+        /* Скрытый текст для скринридеров */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+        
+        /* Улучшенные цвета для контраста */
+        .contact-info h2 {
+            color: #2c3e50;
+        }
+        
+        .contact-item {
+            color: #34495e;
+        }
+        
+        /* Адаптивность для мобильных */
         @media (max-width: 768px) {
             .contacts-layout {
                 grid-template-columns: 1fr !important;
@@ -33,7 +91,7 @@
             
             .form-group input,
             .form-group textarea {
-                font-size: 16px; /* Убирает zoom на iOS */
+                font-size: 16px;
             }
             
             .submit-btn {
@@ -44,78 +102,253 @@
     </style>
 </head>
 <body>
-    <header>
-        <nav class="navbar">
+    <header role="banner">
+        <nav class="navbar" role="navigation" aria-label="Основная навигация">
             <div class="nav-container">
                 <div class="logo-section">
-                    <div class="logo"><img src="../images/icons/picture1.png" class="logo"></div>
+                    <div class="logo" role="img" aria-label="Логотип портфолио">
+                        <img src="../images/icons/picture1.png" class="logo" alt="Логотип портфолио Зайнуллина Якова">
+                    </div>
                     <div class="name">Зайнуллин Яков</div>
                 </div>
-                <ul class="nav-menu">
-                    <li><a href="../index.html">Главная</a></li>
-                    <li><a href="projects.html">Проекты</a></li>
-                    <li><a href="diary.html">Дневник</a></li>
-                    <li><a href="contacts.html" class="active">Контакты</a></li>
-                    <li><a href="responsive-images.html">Адаптивность</a></li>
+                <ul class="nav-menu" role="menubar">
+                    <li role="none"><a href="../index.html" role="menuitem">Главная</a></li>
+                    <li role="none"><a href="projects.html" role="menuitem">Проекты</a></li>
+                    <li role="none"><a href="diary.html" role="menuitem">Дневник</a></li>
+                    <li role="none"><a href="contacts.html" class="active" role="menuitem" aria-current="page">Контакты</a></li>
+                    <li role="none"><a href="responsive-images.html" role="menuitem">Адаптивность</a></li>
                 </ul>
             </div>
         </nav>
     </header>
 
-    <main style="margin-top: 100px; padding: 1rem;">
+    <main id="main-content" style="margin-top: 100px; padding: 1rem;" role="main" aria-label="Основной контент">
         <div class="container">
             <div class="page-header">
                 <h1>Свяжитесь со мной</h1>
                 <p>Буду рад обсудить возможности сотрудничества</p>
+                <span class="sr-only">Форма обратной связи с обязательными и необязательными полями</span>
+            </div>
+            
+            <!-- Сообщение об успешной отправке -->
+            <div id="successMessage" class="success-message" role="alert" aria-live="polite" aria-atomic="true" style="display: none;">
+                Сообщение успешно отправлено! Спасибо за ваше обращение.
             </div>
             
             <div class="contacts-layout">
-                <div class="contact-form">
-                    <form id="contactForm" class="adaptive-form">
-                        <div class="form-group">
-                            <label for="name">Имя:</label>
-                            <input type="text" id="name" name="name" class="form-control" required
-                                placeholder="Введите ваше имя">
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email:</label>
-                            <input type="email" id="email" name="email" class="form-control" required
-                                placeholder="your@email.com">
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Сообщение:</label>
-                            <textarea id="message" name="message" rows="5" class="form-control" required
-                                    placeholder="Расскажите о вашем проекте..."></textarea>
-                        </div>
-                        <button type="submit" class="submit-btn">Отправить сообщение</button>
+                <section class="contact-form" aria-labelledby="form-title">
+                    <h2 id="form-title" class="sr-only">Форма обратной связи</h2>
+                    
+                    <form id="contactForm" class="adaptive-form" novalidate aria-describedby="form-instructions">
+                        <p id="form-instructions" class="sr-only">
+                            Заполните форму обратной связи. Все поля, помеченные звёздочкой, обязательны для заполнения.
+                        </p>
+                        
+                        <fieldset class="fieldset-group">
+                            <legend class="legend">Личная информация</legend>
+                            
+                            <div class="form-group">
+                                <label for="name" class="required">Имя:</label>
+                                <input type="text" 
+                                       id="name" 
+                                       name="name" 
+                                       class="form-control" 
+                                       required
+                                       aria-required="true"
+                                       aria-describedby="name-error"
+                                       placeholder="Введите ваше имя">
+                                <div id="name-error" class="error-message" role="alert">
+                                    Пожалуйста, введите ваше имя
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email" class="required">Email:</label>
+                                <input type="email" 
+                                       id="email" 
+                                       name="email" 
+                                       class="form-control" 
+                                       required
+                                       aria-required="true"
+                                       aria-describedby="email-error"
+                                       placeholder="your@email.com">
+                                <div id="email-error" class="error-message" role="alert">
+                                    Пожалуйста, введите корректный email адрес
+                                </div>
+                            </div>
+                        </fieldset>
+                        
+                        <fieldset class="fieldset-group">
+                            <legend class="legend">Сообщение</legend>
+                            
+                            <div class="form-group">
+                                <label for="subject">Тема сообщения:</label>
+                                <input type="text" 
+                                       id="subject" 
+                                       name="subject" 
+                                       class="form-control"
+                                       aria-describedby="subject-help"
+                                       placeholder="О чём вы хотите поговорить?">
+                                <div id="subject-help" class="sr-only">
+                                    Необязательное поле для указания темы сообщения
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="message" class="required">Сообщение:</label>
+                                <textarea id="message" 
+                                          name="message" 
+                                          rows="5" 
+                                          class="form-control" 
+                                          required
+                                          aria-required="true"
+                                          aria-describedby="message-error message-help"
+                                          placeholder="Расскажите о вашем проекте..."></textarea>
+                                <div id="message-error" class="error-message" role="alert">
+                                    Пожалуйста, введите ваше сообщение (минимум 10 символов)
+                                </div>
+                                <div id="message-help" class="sr-only">
+                                    Минимальная длина сообщения - 10 символов
+                                </div>
+                            </div>
+                        </fieldset>
+                        
+                        <button type="submit" class="submit-btn">
+                            <span class="icon" aria-hidden="true">📨</span>
+                            Отправить сообщение
+                        </button>
                     </form>
-                </div>
+                </section>
                 
-                <div class="contact-info">
-                    <h3>Контакты</h3>
-                    <div class="contact-item">
-                        <span class="contact-icon">📧</span>
-                        <span>student@edu.ru</span>
+                <aside class="contact-info" aria-labelledby="contacts-title">
+                    <h2 id="contacts-title">Контакты</h2>
+                    <div class="contact-item" tabindex="0">
+                        <span class="contact-icon" aria-hidden="true">📧</span>
+                        <span>
+                            <span class="sr-only">Электронная почта: </span>
+                            student@edu.ru
+                        </span>
                     </div>
-                    <div class="contact-item">
-                        <span class="contact-icon">💻</span>
-                        <span>GitHub: <a href="https://github.com/nizi52" target="_blank" class="github-link">nizi52</a></span>
+                    <div class="contact-item" tabindex="0">
+                        <span class="contact-icon" aria-hidden="true">💻</span>
+                        <span>
+                            <span class="sr-only">GitHub профиль: </span>
+                            <a href="https://github.com/nizi52" 
+                               target="_blank" 
+                               class="github-link"
+                               aria-label="Перейти к GitHub профилю nizi52 (откроется в новой вкладке)">
+                                nizi52
+                            </a>
+                        </span>
                     </div>
-                    <div class="contact-item">
-                        <span class="contact-icon">🏙️</span>
-                        <span>Москва, Россия</span>
+                    <div class="contact-item" tabindex="0">
+                        <span class="contact-icon" aria-hidden="true">🏙️</span>
+                        <span>
+                            <span class="sr-only">Местоположение: </span>
+                            Москва, Россия
+                        </span>
                     </div>
-                </div>
+                </aside>
             </div>
         </div>
     </main>
 
-    <footer>
+    <footer role="contentinfo">
         <div class="container">
-            <p>© 2025 Контакты <a href="https://github.com/nizi52" target="_blank" class="github-link">GitHub</a></p>
+            <p>© 2025 Контакты 
+                <a href="https://github.com/nizi52" 
+                   target="_blank" 
+                   class="github-link"
+                   aria-label="Перейти на GitHub профиль nizi52 (откроется в новой вкладке)">
+                    GitHub
+                </a>
+            </p>
         </div>
     </footer>
 
-    <script src="../scripts/script.js"></script>
+    <script>
+        // Валидация формы с улучшенной доступностью
+        document.addEventListener('DOMContentLoaded', function() {
+            const contactForm = document.getElementById('contactForm');
+            const successMessage = document.getElementById('successMessage');
+            
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                let isValid = true;
+                const form = this;
+                
+                // Валидация имени
+                const nameInput = document.getElementById('name');
+                const nameError = document.getElementById('name-error');
+                if (!nameInput.value.trim()) {
+                    nameError.style.display = 'block';
+                    nameInput.setAttribute('aria-invalid', 'true');
+                    isValid = false;
+                } else {
+                    nameError.style.display = 'none';
+                    nameInput.setAttribute('aria-invalid', 'false');
+                }
+                
+                // Валидация email
+                const emailInput = document.getElementById('email');
+                const emailError = document.getElementById('email-error');
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailInput.value.trim() || !emailRegex.test(emailInput.value)) {
+                    emailError.style.display = 'block';
+                    emailInput.setAttribute('aria-invalid', 'true');
+                    isValid = false;
+                } else {
+                    emailError.style.display = 'none';
+                    emailInput.setAttribute('aria-invalid', 'false');
+                }
+                
+                // Валидация сообщения
+                const messageInput = document.getElementById('message');
+                const messageError = document.getElementById('message-error');
+                if (!messageInput.value.trim() || messageInput.value.length < 10) {
+                    messageError.style.display = 'block';
+                    messageInput.setAttribute('aria-invalid', 'true');
+                    isValid = false;
+                } else {
+                    messageError.style.display = 'none';
+                    messageInput.setAttribute('aria-invalid', 'false');
+                }
+                
+                if (isValid) {
+                    // Показываем сообщение об успехе
+                    successMessage.style.display = 'block';
+                    
+                    // Фокусируемся на сообщении об успехе для скринридеров
+                    successMessage.focus();
+                    
+                    // Сбрасываем форму
+                    form.reset();
+                    
+                    // Скрываем сообщение через 5 секунд
+                    setTimeout(() => {
+                        successMessage.style.display = 'none';
+                    }, 5000);
+                } else {
+                    // Фокусируемся на первом поле с ошибкой
+                    const firstError = form.querySelector('[aria-invalid="true"]');
+                    if (firstError) {
+                        firstError.focus();
+                    }
+                }
+            });
+            
+            // Очистка ошибок при вводе
+            document.querySelectorAll('.form-control').forEach(input => {
+                input.addEventListener('input', function() {
+                    const errorElement = document.getElementById(this.id + '-error');
+                    if (errorElement) {
+                        errorElement.style.display = 'none';
+                        this.setAttribute('aria-invalid', 'false');
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>

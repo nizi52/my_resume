@@ -235,3 +235,24 @@ window.closeImageModal = closeImageModal;
 
 // Адаптация при изменении размера окна
 window.addEventListener('resize', debounce(adaptLayoutForMobile, 250));
+
+// Добавим в скрипт
+function showSuccessMessage() {
+    const successMessage = document.getElementById('successMessage');
+    successMessage.style.display = 'block';
+    
+    // Сохраняем текущий активный элемент
+    window.lastFocusedElement = document.activeElement;
+    
+    // Фокусируемся на сообщении
+    successMessage.setAttribute('tabindex', '-1');
+    successMessage.focus();
+    
+    setTimeout(() => {
+        successMessage.style.display = 'none';
+        // Возвращаем фокус на предыдущий элемент
+        if (window.lastFocusedElement) {
+            window.lastFocusedElement.focus();
+        }
+    }, 5000);
+}
