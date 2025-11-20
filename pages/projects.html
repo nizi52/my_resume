@@ -6,202 +6,80 @@
     <title>Портфолио - Проекты</title>
     <link rel="stylesheet" href="../styles/styles.css">
     <style>
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 2000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.8);
-            overflow-y: auto;
-        }
-
-        .modal-content {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            margin: 5% auto;
-            padding: 0;
-            border-radius: 20px;
-            width: 90%;
-            max-width: 800px;
-            position: relative;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .close {
-            position: absolute;
-            right: 20px;
-            top: 15px;
-            font-size: 2rem;
-            font-weight: bold;
-            color: white;
-            cursor: pointer;
-            z-index: 2001;
-        }
-
-        .modal-header {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 2rem;
-            border-radius: 20px 20px 0 0;
-            text-align: center;
-        }
-
-        .modal-header h2 {
-            color: white;
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .modal-body {
-            padding: 2rem;
-            color: white;
-        }
-
-        .project-description {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            margin-bottom: 2rem;
-            text-align: center;
-        }
-
-        /* Стили для стикеров */
-        .screenshots {
-            display: flex;
-            justify-content: center;
+        /* Стили для адаптивных изображений проектов */
+        .project-screenshots {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 1.5rem;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
+            margin: 2rem 0;
         }
-
-        .screenshot-sticker {
-            width: 80px;
-            height: 80px;
-            background: rgba(255, 255, 255, 0.15);
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            border: 2px dashed rgba(255, 255, 255, 0.3);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .screenshot-sticker:hover {
-            transform: scale(1.1);
-            background: rgba(255, 255, 255, 0.25);
-        }
-
-        /* Стили для модального окна с изображением */
-        .image-modal {
-            display: none;
-            position: fixed;
-            z-index: 3000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.9);
-        }
-
-        .image-modal-content {
-            position: relative;
-            margin: 2% auto;
-            width: 95%;
-            max-width: 1200px;
-            height: 95vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .full-image {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
+        
+        .screenshot-item {
             border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
         }
-
-        .image-close {
-            position: absolute;
-            top: 20px;
-            right: 30px;
-            font-size: 3rem;
-            font-weight: bold;
-            color: white;
-            cursor: pointer;
-            z-index: 3001;
-        }
-
-        .image-caption {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            color: white;
-            font-size: 1.1rem;
-            text-align: center;
-            background: rgba(0, 0, 0, 0.7);
-            padding: 10px 20px;
-            border-radius: 20px;
-        }
-
-        .project-links {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            flex-wrap: wrap;
-            margin-top: 2rem;
-        }
-
-        .project-link {
-            background: linear-gradient(135deg, #3498db, #2980b9);
-            color: white;
-            padding: 12px 25px;
-            border-radius: 25px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .project-link:hover {
-            transform: translateY(-3px);
-        }
-
-        .project-link.live {
-            background: linear-gradient(135deg, #27ae60, #219653);
-        }
-
-        .tech-stack-modal {
-            display: flex;
-            justify-content: center;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-            margin: 1.5rem 0;
-        }
-
-        .tech-tag-modal {
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-            padding: 0.4rem 1rem;
-            border-radius: 15px;
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-
-        .project-card-large {
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .project-card-large:hover {
+        
+        .screenshot-item:hover {
             transform: translateY(-5px);
         }
+        
+        .responsive-screenshot {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .object-fit-demo {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .object-fit-item {
+            text-align: center;
+            background: rgba(255,255,255,0.1);
+            padding: 1rem;
+            border-radius: 10px;
+        }
+        
+        .object-fit-item img {
+            width: 100%;
+            height: 120px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 8px;
+        }
+        
+        .object-fit-cover { object-fit: cover; }
+        .object-fit-contain { 
+            object-fit: contain; 
+            background: rgba(255,255,255,0.8);
+        }
+        .object-fit-fill { object-fit: fill; }
+        
+        /* Адаптивность для мобильных */
+        @media (max-width: 768px) {
+            .object-fit-demo {
+                grid-template-columns: 1fr;
+            }
+            
+            .project-screenshots {
+                grid-template-columns: 1fr;
+            }
+            
+            .responsive-screenshot {
+                height: 150px;
+            }
+        }
+        
+        /* Убираем старые стили модальных окон */
+        .modal { display: none; }
     </style>
 </head>
 <body>
-    <!-- Основная структура страницы -->
     <header>
         <nav class="navbar">
             <div class="nav-container">
@@ -214,7 +92,6 @@
                     <li><a href="projects.html" class="active">Проекты</a></li>
                     <li><a href="diary.html">Дневник</a></li>
                     <li><a href="contacts.html">Контакты</a></li>
-                    <li><a href="responsive-images.html">Адаптивность</a></li>
                 </ul>
             </div>
         </nav>
@@ -224,231 +101,142 @@
         <div class="container">
             <div class="page-header">
                 <h1>Мои проекты</h1>
-                <p>Нажмите на карточку проекта для детальной информации</p>
+                <p>Вот некоторые из моих работ с демонстрацией адаптивного дизайна</p>
             </div>
-            <div class="projects-grid-extended">
-                <div class="project-card-large" onclick="openModal('modal1')">
-                    <div class="project-icon">🎨</div>
-                    <h3>Личный сайт-портфолио</h3>
-                    <p>Адаптивный веб-сайт с современным дизайном</p>
-                    <div class="tech-stack">
-                        <span class="tech-tag">HTML5</span>
-                        <span class="tech-tag">CSS3</span>
-                        <span class="tech-tag">JavaScript</span>
-                    </div>
-                </div>
-                
-                <div class="project-card-large" onclick="openModal('modal2')">
-                    <div class="project-icon">♟️</div>
-                    <h3>Терминальные шахматы</h3>
-                    <p>Консольная игра в шахматы</p>
-                    <div class="tech-stack">
-                        <span class="tech-tag">Python</span>
-                    </div>
-                </div>
-                
-                <div class="project-card-large" onclick="openModal('modal3')">
-                    <div class="project-icon">🔐</div>
-                    <h3>Генератор паролей</h3>
-                    <p>Приложение для генерации безопасных паролей</p>
-                    <div class="tech-stack">
-                        <span class="tech-tag">С++</span>
-                        <span class="tech-tag">QT</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </main>
 
-    <!-- Модальное окно проекта 1 - Портфолио -->
-    <div id="modal1" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('modal1')">&times;</span>
-            <div class="modal-header">
-                <h2>Личный сайт-портфолио</h2>
-                <div class="tech-stack-modal">
-                    <span class="tech-tag-modal">HTML5</span>
-                    <span class="tech-tag-modal">CSS3</span>
-                    <span class="tech-tag-modal">JavaScript</span>
-                    <span class="tech-tag-modal">Адаптивный дизайн</span>
+            <!-- Секция с демонстрацией object-fit -->
+            <section class="demo-section" style="background: rgba(255,255,255,0.9); padding: 2rem; border-radius: 15px; margin-bottom: 3rem;">
+                <h2>Техники адаптивных изображений</h2>
+                <p>Использую современные подходы к работе с изображениями:</p>
+                
+                <div class="object-fit-demo">
+                    <div class="object-fit-item">
+                        <img src="../images/icons/sitepict1.png" alt="Cover пример" class="object-fit-cover">
+                        <p><strong>object-fit: cover</strong><br>Заполняет контейнер, сохраняя пропорции</p>
+                    </div>
+                    <div class="object-fit-item">
+                        <img src="../images/icons/sitepict2.png" alt="Contain пример" class="object-fit-contain">
+                        <p><strong>object-fit: contain</strong><br>Вписывает полностью, могут быть поля</p>
+                    </div>
+                    <div class="object-fit-item">
+                        <img src="../images/icons/sitepict3.png" alt="Fill пример" class="object-fit-fill">
+                        <p><strong>object-fit: fill</strong><br>Растягивает, может искажать пропорции</p>
+                    </div>
                 </div>
-            </div>
-            <div class="modal-body">
-                <div class="project-description">
-                    <p>Современный адаптивный веб-сайт портфолио, созданный с использованием чистого HTML, CSS и JavaScript. Сайт демонстрирует лучшие практики веб-разработки и включает анимации, плавные переходы и полностью отзывчивый дизайн.</p>
-                </div>
+            </section>
 
-                <div class="screenshots">
+            <!-- Проект 1: Портфолио -->
+            <div class="project-card-large">
+                <div class="project-icon">🎨</div>
+                <h3>Личный сайт-портфолио</h3>
+                <p>Адаптивный веб-сайт с современным дизайном. Полностью responsive - отлично выглядит на мобильных устройствах, планшетах и десктопах.</p>
+                
+                <div class="project-screenshots">
                     <div class="screenshot-item">
                         <picture>
                             <source srcset="../images/icons/sitepict1.png 1x, ../images/icons/sitepict1.png 2x">
                             <img src="../images/icons/sitepict1.png" 
-                                alt="Главная страница портфолио" 
-                                class="responsive-screenshot"
-                                onclick="openImageModal('portfolio1')"
-                                loading="lazy">
+                                alt="Главная страница портфолио на десктопе" 
+                                class="responsive-screenshot">
                         </picture>
                     </div>
                     <div class="screenshot-item">
                         <picture>
                             <source srcset="../images/icons/sitepict2.png 1x, ../images/icons/sitepict2.png 2x">
                             <img src="../images/icons/sitepict2.png" 
-                                alt="Раздел ознакомления" 
-                                class="responsive-screenshot"
-                                onclick="openImageModal('portfolio2')"
-                                loading="lazy">
+                                alt="Портфолио на планшете" 
+                                class="responsive-screenshot">
                         </picture>
                     </div>
                     <div class="screenshot-item">
                         <picture>
                             <source srcset="../images/icons/sitepict3.png 1x, ../images/icons/sitepict3.png 2x">
                             <img src="../images/icons/sitepict3.png" 
-                                alt="Раздел проектов" 
-                                class="responsive-screenshot"
-                                onclick="openImageModal('portfolio3')"
-                                loading="lazy">
+                                alt="Мобильная версия портфолио" 
+                                class="responsive-screenshot">
                         </picture>
                     </div>
-                </div>
-
-                <div class="project-links">
-                    <a href="https://nizi52.github.io" target="_blank" class="project-link live">Живая версия</a>
-                    <a href="https://github.com/nizi52/nizi52.github.io" target="_blank" class="project-link">Исходный код</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Модальное окно проекта 2 - Шахматы -->
-    <div id="modal2" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('modal2')">&times;</span>
-            <div class="modal-header">
-                <h2>Терминальные шахматы</h2>
-                <div class="tech-stack-modal">
-                    <span class="tech-tag-modal">Python</span>
-                    <span class="tech-tag-modal">ООП</span>
-                    <span class="tech-tag-modal">Алгоритмы</span>
-                </div>
-            </div>
-            <div class="modal-body">
-                <div class="project-description">
-                    <p>Консольная игра в шахматы с полной реализацией правил классических шахмат. Проект включает систему ходов, проверку шахов и матов.</p>
                 </div>
                 
-                <!-- ОБНОВИТЬ секцию screenshots в КАЖДОМ модальном окне -->
-                <div class="screenshots">
-                    <div class="screenshot-item">
-                        <picture>
-                            <source srcset="../images/icons/chesspict1.png 1x, ../images/icons/chesspict1.png 2x">
-                            <img src="../images/icons/chesspict1.png" 
-                                alt="Главная страница портфолио" 
-                                class="responsive-screenshot"
-                                onclick="openImageModal('chess1')"
-                                loading="lazy">
-                        </picture>
-                    </div>
-                    <div class="screenshot-item">
-                        <picture>
-                            <source srcset="../images/icons/chesspict2.png 1x, ../images/icons/chesspict2.png 2x">
-                            <img src="../images/icons/chesspict2.png" 
-                                alt="Раздел ознакомления" 
-                                class="responsive-screenshot"
-                                onclick="openImageModal('chess2')"
-                                loading="lazy">
-                        </picture>
-                    </div>
-                    <div class="screenshot-item">
-                        <picture>
-                            <source srcset="../images/icons/chesspict3.png 1x, ../images/icons/chesspict3.png 2x">
-                            <img src="../images/icons/chesspict3.png" 
-                                alt="Раздел проектов" 
-                                class="responsive-screenshot"
-                                onclick="openImageModal('chess3')"
-                                loading="lazy">
-                        </picture>
-                    </div>
-                </div>
-
-                <div class="project-links">
-                    <a href="https://github.com/nizi52/pychess" target="_blank" class="project-link">Исходный код</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Модальное окно проекта 3 - Генератор паролей -->
-    <div id="modal3" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('modal3')">&times;</span>
-            <div class="modal-header">
-                <h2>Генератор случайных паролей</h2>
-                <div class="tech-stack-modal">
-                    <span class="tech-tag-modal">С++</span>
-                    <span class="tech-tag-modal">QT</span>
-                    <span class="tech-tag-modal">GUI</span>
-                    <span class="tech-tag-modal">Криптография</span>
-                </div>
-            </div>
-            <div class="modal-body">
-                <div class="project-description">
-                    <p>Десктопное приложение для генерации безопасных паролей с графическим интерфейсом. Позволяет настраивать длину пароля, использовать различные типы символов, оценивать сложность пароля и копировать результат в буфер обмена.</p>
+                <div class="tech-stack">
+                    <span class="tech-tag">HTML5</span>
+                    <span class="tech-tag">CSS3</span>
+                    <span class="tech-tag">JavaScript</span>
+                    <span class="tech-tag">Адаптивный дизайн</span>
                 </div>
                 
-                <div class="screenshots">
+                <div style="margin-top: 1rem;">
+                    <a href="https://nizi52.github.io" target="_blank" class="download-btn" style="display: inline-block; margin-right: 1rem;">Живая версия</a>
+                    <a href="https://github.com/nizi52/nizi52.github.io" target="_blank" class="download-btn" style="display: inline-block; background: #2c3e50;">Исходный код</a>
+                </div>
+            </div>
+            
+            <!-- Проект 2: Шахматы -->
+            <div class="project-card-large">
+                <div class="project-icon">♟️</div>
+                <h3>Терминальные шахматы</h3>
+                <p>Консольная игра в шахматы с полной реализацией правил. Проект демонстрирует работу с алгоритмами и ООП.</p>
+                
+                <div class="project-screenshots">
                     <div class="screenshot-item">
-                        <picture>
-                            <source srcset="../images/icons/passpic1.png 1x, ../images/icons/passpic1.png 2x">
-                            <img src="../images/icons/passpic1.png" 
-                                alt="Главная страница портфолио" 
-                                class="responsive-screenshot"
-                                onclick="openImageModal('password1')"
-                                loading="lazy">
-                        </picture>
+                        <img src="../images/icons/chesspict1.png" 
+                            alt="Игровое поле шахмат" 
+                            class="responsive-screenshot">
                     </div>
                     <div class="screenshot-item">
-                        <picture>
-                            <source srcset="../images/icons/passpic2.png 1x, ../images/icons/passpic2.png 2x">
-                            <img src="../images/icons/passpic2.png" 
-                                alt="Раздел ознакомления" 
-                                class="responsive-screenshot"
-                                onclick="openImageModal('password2')"
-                                loading="lazy">
-                        </picture>
-                    </div>
-                    <div class="screenshot-item">
-                        <picture>
-                            <source srcset="../images/icons/passpic3.png 1x, ../images/icons/passpic3.png 2x">
-                            <img src="../images/icons/passpic3.png" 
-                                alt="Раздел проектов" 
-                                class="responsive-screenshot"
-                                onclick="openImageModal('password3')"
-                                loading="lazy">
-                        </picture>
+                        <img src="../images/icons/chesspict2.png" 
+                            alt="Система ходов" 
+                            class="responsive-screenshot">
                     </div>
                 </div>
-
-                <div class="project-links">
-                    <a href="https://github.com/nizi52/passwordiki-generator" target="_blank" class="project-link">Исходный код</a>
+                
+                <div class="tech-stack">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">ООП</span>
+                    <span class="tech-tag">Алгоритмы</span>
+                </div>
+                
+                <div style="margin-top: 1rem;">
+                    <a href="https://github.com/nizi52/pychess" target="_blank" class="download-btn" style="display: inline-block; background: #2c3e50;">Исходный код</a>
+                </div>
+            </div>
+            
+            <!-- Проект 3: Генератор паролей -->
+            <div class="project-card-large">
+                <div class="project-icon">🔐</div>
+                <h3>Генератор паролей</h3>
+                <p>Десктопное приложение для генерации безопасных паролей с графическим интерфейсом. Адаптивный интерфейс под разные разрешения.</p>
+                
+                <div class="project-screenshots">
+                    <div class="screenshot-item">
+                        <img src="../images/icons/passpic1.png" 
+                            alt="Главный интерфейс генератора" 
+                            class="responsive-screenshot">
+                    </div>
+                    <div class="screenshot-item">
+                        <img src="../images/icons/passpic2.png" 
+                            alt="Настройки генерации" 
+                            class="responsive-screenshot">
+                    </div>
+                </div>
+                
+                <div class="tech-stack">
+                    <span class="tech-tag">С++</span>
+                    <span class="tech-tag">QT</span>
+                    <span class="tech-tag">GUI</span>
+                </div>
+                
+                <div style="margin-top: 1rem;">
+                    <a href="https://github.com/nizi52/passwordiki-generator" target="_blank" class="download-btn" style="display: inline-block; background: #2c3e50;">Исходный код</a>
                 </div>
             </div>
         </div>
-    </div>
-
-    <!-- Модальное окно для полноразмерных изображений -->
-    <div id="imageModal" class="image-modal">
-        <span class="image-close" onclick="closeImageModal()">&times;</span>
-        <div class="image-modal-content">
-            <img id="fullSizeImage" class="full-image" src="" alt="">
-            <div class="image-caption" id="imageCaption"></div>
-        </div>
-    </div>
+    </main>
 
     <footer>
         <div class="container">
-            <p>© 2025 Контакты <a href="https://github.com/nizi52" target="_blank" class="github-link--light">GitHub</a></p>
+            <p>© 2025 Проекты <a href="https://github.com/nizi52" target="_blank" class="github-link">GitHub</a></p>
         </div>
     </footer>
-    <script src="../scripts/script.js"></script>
 </body>
 </html>
