@@ -19,6 +19,11 @@
             overflow: hidden;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
             transition: transform 0.3s ease;
+            background: #f8f9fa;
+            min-height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
         .screenshot-item:hover {
@@ -30,6 +35,18 @@
             height: 200px;
             object-fit: cover;
             display: block;
+        }
+        
+        .image-placeholder {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+            border-radius: 10px;
         }
         
         .object-fit-demo {
@@ -51,6 +68,8 @@
             height: 120px;
             border: 2px solid rgba(255,255,255,0.3);
             border-radius: 8px;
+            display: block;
+            background: #f8f9fa;
         }
         
         .object-fit-cover { object-fit: cover; }
@@ -59,6 +78,73 @@
             background: rgba(255,255,255,0.8);
         }
         .object-fit-fill { object-fit: fill; }
+        
+        /* Исправленный tech-stack */
+        .tech-stack {
+            display: flex;
+            justify-content: center;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+            margin: 1.5rem 0;
+            max-width: 100%;
+        }
+        
+        .tech-tag {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            white-space: nowrap;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Контейнер для кнопок */
+        .project-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+        }
+        
+        .project-btn {
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            text-align: center;
+            min-width: 140px;
+        }
+        
+        .project-btn.primary {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
+        }
+        
+        .project-btn.secondary {
+            background: rgba(44, 62, 80, 0.9);
+            color: white;
+            box-shadow: 0 4px 15px rgba(44, 62, 80, 0.3);
+        }
+        
+        .project-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+        }
+        
+        .project-btn.primary:hover {
+            box-shadow: 0 6px 20px rgba(231, 76, 60, 0.4);
+        }
+        
+        .project-btn.secondary:hover {
+            box-shadow: 0 6px 20px rgba(44, 62, 80, 0.4);
+        }
         
         /* Адаптивность для мобильных */
         @media (max-width: 768px) {
@@ -72,6 +158,30 @@
             
             .responsive-screenshot {
                 height: 150px;
+            }
+            
+            .image-placeholder {
+                height: 150px;
+                font-size: 2rem;
+            }
+            
+            .tech-stack {
+                gap: 0.5rem;
+            }
+            
+            .tech-tag {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.8rem;
+            }
+            
+            .project-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .project-btn {
+                width: 100%;
+                max-width: 200px;
             }
         }
         
@@ -133,28 +243,19 @@
                 
                 <div class="project-screenshots">
                     <div class="screenshot-item">
-                        <picture>
-                            <source srcset="../images/icons/sitepict1.png 1x, ../images/icons/sitepict1.png 2x">
-                            <img src="../images/icons/sitepict1.png" 
-                                alt="Главная страница портфолио на десктопе" 
-                                class="responsive-screenshot">
-                        </picture>
+                        <img src="../images/icons/sitepict1.png" 
+                            alt="Главная страница портфолио на десктопе" 
+                            class="responsive-screenshot">
                     </div>
                     <div class="screenshot-item">
-                        <picture>
-                            <source srcset="../images/icons/sitepict2.png 1x, ../images/icons/sitepict2.png 2x">
-                            <img src="../images/icons/sitepict2.png" 
-                                alt="Портфолио на планшете" 
-                                class="responsive-screenshot">
-                        </picture>
+                        <img src="../images/icons/sitepict2.png" 
+                            alt="Портфолио на планшете" 
+                            class="responsive-screenshot">
                     </div>
                     <div class="screenshot-item">
-                        <picture>
-                            <source srcset="../images/icons/sitepict3.png 1x, ../images/icons/sitepict3.png 2x">
-                            <img src="../images/icons/sitepict3.png" 
-                                alt="Мобильная версия портфолио" 
-                                class="responsive-screenshot">
-                        </picture>
+                        <img src="../images/icons/sitepict3.png" 
+                            alt="Мобильная версия портфолио" 
+                            class="responsive-screenshot">
                     </div>
                 </div>
                 
@@ -165,9 +266,9 @@
                     <span class="tech-tag">Адаптивный дизайн</span>
                 </div>
                 
-                <div style="margin-top: 1rem;">
-                    <a href="https://nizi52.github.io" target="_blank" class="download-btn" style="display: inline-block; margin-right: 1rem;">Живая версия</a>
-                    <a href="https://github.com/nizi52/nizi52.github.io" target="_blank" class="download-btn" style="display: inline-block; background: #2c3e50;">Исходный код</a>
+                <div class="project-buttons">
+                    <a href="https://nizi52.github.io" target="_blank" class="project-btn primary">Живая версия</a>
+                    <a href="https://github.com/nizi52/nizi52.github.io" target="_blank" class="project-btn secondary">Исходный код</a>
                 </div>
             </div>
             
@@ -196,8 +297,8 @@
                     <span class="tech-tag">Алгоритмы</span>
                 </div>
                 
-                <div style="margin-top: 1rem;">
-                    <a href="https://github.com/nizi52/pychess" target="_blank" class="download-btn" style="display: inline-block; background: #2c3e50;">Исходный код</a>
+                <div class="project-buttons">
+                    <a href="https://github.com/nizi52/pychess" target="_blank" class="project-btn secondary">Исходный код</a>
                 </div>
             </div>
             
@@ -218,6 +319,11 @@
                             alt="Настройки генерации" 
                             class="responsive-screenshot">
                     </div>
+                    <div class="screenshot-item">
+                        <img src="../images/icons/passpic3.png" 
+                            alt="Генератор случайного числа" 
+                            class="responsive-screenshot">
+                    </div>
                 </div>
                 
                 <div class="tech-stack">
@@ -226,8 +332,8 @@
                     <span class="tech-tag">GUI</span>
                 </div>
                 
-                <div style="margin-top: 1rem;">
-                    <a href="https://github.com/nizi52/passwordiki-generator" target="_blank" class="download-btn" style="display: inline-block; background: #2c3e50;">Исходный код</a>
+                <div class="project-buttons">
+                    <a href="https://github.com/nizi52/passwordiki-generator" target="_blank" class="project-btn secondary">Исходный код</a>
                 </div>
             </div>
         </div>
@@ -235,8 +341,51 @@
 
     <footer>
         <div class="container">
-            <p>© 2025 Проекты <a href="https://github.com/nizi52" target="_blank" class="github-link">GitHub</a></p>
+            <p>© 2025 Проекты <a href="https://github.com/nizi52" target="_blank" class="github-link--light">GitHub</a></p>
         </div>
     </footer>
+
+    <script>
+        // Проверка и загрузка изображений
+        document.addEventListener('DOMContentLoaded', function() {
+            const images = document.querySelectorAll('img');
+            images.forEach(img => {
+                img.onerror = function() {
+                    console.log('Ошибка загрузки изображения:', this.src);
+                    // Если изображение не загружается, заменяем на placeholder
+                    const placeholder = document.createElement('div');
+                    placeholder.className = 'image-placeholder';
+                    
+                    // Разные иконки для разных типов изображений
+                    if (this.src.includes('sitepict')) {
+                        placeholder.innerHTML = '🌐';
+                    } else if (this.src.includes('chesspict')) {
+                        placeholder.innerHTML = '♟️';
+                    } else if (this.src.includes('passpic')) {
+                        placeholder.innerHTML = '🔐';
+                    } else {
+                        placeholder.innerHTML = '🖼️';
+                    }
+                    
+                    placeholder.style.width = '100%';
+                    placeholder.style.height = '200px';
+                    placeholder.style.display = 'flex';
+                    placeholder.style.alignItems = 'center';
+                    placeholder.style.justifyContent = 'center';
+                    placeholder.style.background = 'linear-gradient(135deg, #667eea, #764ba2)';
+                    placeholder.style.color = 'white';
+                    placeholder.style.fontSize = '3rem';
+                    placeholder.style.borderRadius = '10px';
+                    
+                    this.parentNode.replaceChild(placeholder, this);
+                };
+                
+                // Логируем успешную загрузку
+                img.onload = function() {
+                    console.log('Изображение загружено:', this.src);
+                };
+            });
+        });
+    </script>
 </body>
 </html>
