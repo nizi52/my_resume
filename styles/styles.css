@@ -1222,3 +1222,23 @@ footer {
     flex-direction: column;
     justify-content: space-between;
 }
+
+/* Доступность и мелкие улучшения */
+.sr-only {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0,0,0,0);
+    white-space: nowrap; border: 0;
+}
+
+/* Фокус для клавиатурной навигации */
+.project-card-large:focus-visible {
+    outline: 4px solid #3498db;
+    outline-offset: 4px;
+}
+
+/* Плавная анимация для prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+    * { transition-duration: 0.01ms !important; }
+}

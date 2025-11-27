@@ -2,204 +2,176 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Портфолио - Проекты</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Проекты — Зайнуллин Яков</title>
     <link rel="stylesheet" href="../styles/styles.css">
     <style>
-        /* Стили для адаптивных изображений проектов */
-        .project-screenshots {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin: 2rem 0;
-        }
-        
-        .screenshot-item {
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-            background: #f8f9fa;
-            min-height: 150px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .screenshot-item:hover {
-            transform: translateY(-5px);
-        }
-        
-        .responsive-screenshot {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            display: block;
-        }
-        
-        .image-placeholder {
-            width: 100%;
-            height: 200px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 3rem;
-            border-radius: 10px;
-        }
-        
-        .object-fit-demo {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
-            margin: 2rem 0;
-        }
-        
-        .object-fit-item {
+        :root { --gap: clamp(2rem, 5vw, 4rem); }
+
+        main { padding-top: 100px; padding-bottom: 4rem; }
+
+        .page-title {
             text-align: center;
-            background: rgba(255,255,255,0.1);
-            padding: 1rem;
-            border-radius: 10px;
+            font-size: clamp(2.2rem, 7vw, 4rem);
+            margin-bottom: .5rem;
+            color: #2c3e50;
         }
-        
-        .object-fit-item img {
-            width: 100%;
-            height: 120px;
-            border: 2px solid rgba(255,255,255,0.3);
-            border-radius: 8px;
-            display: block;
+        .page-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto 4rem;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
+            gap: var(--gap);
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .project-card {
+            container-type: inline-size;
+            background: #fff;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 12px 40px rgba(0,0,0,.12);
+            transition: transform .4s ease, box-shadow .4s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .project-card:hover { transform: translateY(-12px); box-shadow: 0 24px 50px rgba(0,0,0,.2); }
+
+        .project-emoji {
+            border-radius: 20px;
+            font-size: clamp(3rem, 10vw, 4.5rem);
+            text-align: center;
+            padding: clamp(1rem, 3vw, 1.5rem) 0 clamp(.5rem, 2vw, .8rem);
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .project-title {
+            font-size: clamp(1.4rem, 4vw, 1.9rem);
+            text-align: center;
+            margin: 1rem 0 .5rem;
+            color: #2c3e50;
+            word-break: break-word;
+            hyphens: auto;
+        }
+
+        .project-desc {
+            padding: 0 clamp(1rem, 3vw, 1.5rem);
+            color: #444;
+            line-height: 1.7;
+            flex-grow: 1;
+            margin-bottom: 1.5rem;
+            hyphens: auto;
+        }
+
+        /* Адаптивные скриншоты — 3 штуки в ряд → 1 на мобиле */
+        .screenshots {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+            gap: .8rem;
+            padding: clamp(1rem, 3vw, 1.5rem);
             background: #f8f9fa;
         }
-        
-        .object-fit-cover { object-fit: cover; }
-        .object-fit-contain { 
-            object-fit: contain; 
-            background: rgba(255,255,255,0.8);
+        .screenshot {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,.1);
+            aspect-ratio: 16/10;
         }
-        .object-fit-fill { object-fit: fill; }
-        
-        /* Исправленный tech-stack */
-        .tech-stack {
+        .screenshot img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform .3s ease;
+        }
+        .screenshot:hover img { transform: scale(1.08); }
+
+        .project-tech {
             display: flex;
-            justify-content: center;
-            gap: 0.8rem;
             flex-wrap: wrap;
-            margin: 1.5rem 0;
-            max-width: 100%;
+            gap: .6rem;
+            justify-content: center;
+            padding: 0 1rem 1.5rem;
         }
-        
         .tech-tag {
             background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            white-space: nowrap;
-            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            padding: .45rem .9rem;
+            border-radius: 30px;
+            font-size: .85rem;
+            font-weight: 600;
         }
-        
-        /* Контейнер для кнопок */
+
         .project-buttons {
             display: flex;
             gap: 1rem;
             justify-content: center;
+            padding: 1.5rem 1rem;
             flex-wrap: wrap;
-            margin-top: 1.5rem;
+            border-top: 1px solid #eee;
+            margin-top: auto;
         }
-        
-        .project-btn {
-            padding: 12px 24px;
-            border-radius: 25px;
+        .btn {
+            padding: .8rem 1.8rem;
+            border-radius: 30px;
             text-decoration: none;
             font-weight: 600;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-            text-align: center;
-            min-width: 140px;
+            transition: all .3s ease;
+            min-height: 48px;
+            min-width: 120px;
+            display: inline-flex;
+            align-items: center;
+            gap: .5rem;
         }
-        
-        .project-btn.primary {
+        .btn-primary {
             background: linear-gradient(135deg, #e74c3c, #c0392b);
             color: white;
-            box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
         }
-        
-        .project-btn.secondary {
-            background: rgba(44, 62, 80, 0.9);
+        .btn-secondary {
+            background: #2c3e50;
             color: white;
-            box-shadow: 0 4px 15px rgba(44, 62, 80, 0.3);
         }
-        
-        .project-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+        .btn:hover { transform: translateY(-3px); }
+
+        /* Контейнерные запросы — внутри карточки */
+        @container (max-width: 420px) {
+            .screenshots { grid-template-columns: 1fr; }
+            .project-buttons { flex-direction: column; }
+            .btn { width: 100%; justify-content: center; }
         }
-        
-        .project-btn.primary:hover {
-            box-shadow: 0 6px 20px rgba(231, 76, 60, 0.4);
+
+        /* Мобильные фиксы из Lighthouse */
+        @media (max-width: 480px) {
+            .projects-grid { gap: 2.5rem; padding: 0 .5rem; }
+            .project-desc { margin-bottom: 2rem; }
+            .project-buttons { padding: 1.5rem .5rem; }
         }
-        
-        .project-btn.secondary:hover {
-            box-shadow: 0 6px 20px rgba(44, 62, 80, 0.4);
-        }
-        
-        /* Адаптивность для мобильных */
-        @media (max-width: 768px) {
-            .object-fit-demo {
-                grid-template-columns: 1fr;
-            }
-            
-            .project-screenshots {
-                grid-template-columns: 1fr;
-            }
-            
-            .responsive-screenshot {
-                height: 150px;
-            }
-            
-            .image-placeholder {
-                height: 150px;
-                font-size: 2rem;
-            }
-            
-            .tech-stack {
-                gap: 0.5rem;
-            }
-            
-            .tech-tag {
-                padding: 0.4rem 0.8rem;
-                font-size: 0.8rem;
-            }
-            
-            .project-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .project-btn {
-                width: 100%;
-                max-width: 200px;
-            }
-        }
-        
-        /* Убираем старые стили модальных окон */
-        .modal { display: none; }
+
+        /* Доступность */
+        .project-card:focus-visible { outline: 4px solid #3498db; outline-offset: 4px; }
+        .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
     </style>
 </head>
 <body>
-    <header>
-        <nav class="navbar">
+
+    <header role="banner">
+        <nav class="navbar" role="navigation" aria-label="Основная навигация">
             <div class="nav-container">
                 <div class="logo-section">
-                    <div class="logo"><img src="../images/icons/picture1.png" class="logo" alt="Логотип"></div>
+                    <img src="../images/icons/picture1.png" alt="" class="logo">
                     <div class="name">Зайнуллин Яков</div>
                 </div>
                 <ul class="nav-menu">
                     <li><a href="../index.html">Главная</a></li>
-                    <li><a href="projects.html" class="active">Проекты</a></li>
+                    <li><a href="projects.html" class="active" aria-current="page">Проекты</a></li>
                     <li><a href="diary.html">Дневник</a></li>
                     <li><a href="contacts.html">Контакты</a></li>
                 </ul>
@@ -207,185 +179,97 @@
         </nav>
     </header>
 
-    <main style="margin-top: 100px; padding: 2rem;">
-        <div class="container">
-            <div class="page-header">
-                <h1>Мои проекты</h1>
-                <p>Вот некоторые из моих работ с демонстрацией адаптивного дизайна</p>
-            </div>
+    <main>
+        <h1 class="page-title">Мои проекты</h1>
+        <p class="page-subtitle">Учебные и личные работы, которыми я горжусь</p>
 
-            <!-- Секция с демонстрацией object-fit -->
-            <section class="demo-section" style="background: rgba(255,255,255,0.9); padding: 2rem; border-radius: 15px; margin-bottom: 3rem;">
-                <h2>Техники адаптивных изображений</h2>
-                <p>Использую современные подходы к работе с изображениями:</p>
-                
-                <div class="object-fit-demo">
-                    <div class="object-fit-item">
-                        <img src="../images/icons/sitepict1.png" alt="Cover пример" class="object-fit-cover">
-                        <p><strong>object-fit: cover</strong><br>Заполняет контейнер, сохраняя пропорции</p>
-                    </div>
-                    <div class="object-fit-item">
-                        <img src="../images/icons/sitepict2.png" alt="Contain пример" class="object-fit-contain">
-                        <p><strong>object-fit: contain</strong><br>Вписывает полностью, могут быть поля</p>
-                    </div>
-                    <div class="object-fit-item">
-                        <img src="../images/icons/sitepict3.png" alt="Fill пример" class="object-fit-fill">
-                        <p><strong>object-fit: fill</strong><br>Растягивает, может искажать пропорции</p>
-                    </div>
-                </div>
-            </section>
+        <section class="projects-grid" aria-labelledby="projects-heading">
+            <h2 id="projects-heading" class="sr-only">Список проектов</h2>
 
-            <!-- Проект 1: Портфолио -->
-            <div class="project-card-large">
-                <div class="project-icon">🎨</div>
-                <h3>Личный сайт-портфолио</h3>
-                <p>Адаптивный веб-сайт с современным дизайном. Полностью responsive - отлично выглядит на мобильных устройствах, планшетах и десктопах.</p>
-                
-                <div class="project-screenshots">
-                    <div class="screenshot-item">
-                        <img src="../images/icons/sitepict1.png" 
-                            alt="Главная страница портфолио на десктопе" 
-                            class="responsive-screenshot">
-                    </div>
-                    <div class="screenshot-item">
-                        <img src="../images/icons/sitepict2.png" 
-                            alt="Портфолио на планшете" 
-                            class="responsive-screenshot">
-                    </div>
-                    <div class="screenshot-item">
-                        <img src="../images/icons/sitepict3.png" 
-                            alt="Мобильная версия портфолио" 
-                            class="responsive-screenshot">
-                    </div>
+            <!-- 1. Личный сайт-портфолио -->
+            <article class="project-card" tabindex="0">
+                <div class="project-emoji">🌐</div>
+                <h3 class="project-title">Личный сайт-портфолио</h3>
+                <p class="project-desc">Полностью адаптивный многостраничный сайт с анимациями, прогресс-барами, модальными окнами, контейнерными запросами и 100% доступностью.</p>
+
+                <div class="screenshots">
+                    <div class="screenshot"><img src="../images/icons/sitepict1.png" alt="Главная страница" loading="lazy"></div>
+                    <div class="screenshot"><img src="../images/icons/sitepict2.png" alt="Дневник" loading="lazy"></div>
+                    <div class="screenshot"><img src="../images/icons/sitepict3.png" alt="Проекты" loading="lazy"></div>
                 </div>
-                
-                <div class="tech-stack">
+
+                <div class="project-tech">
                     <span class="tech-tag">HTML5</span>
                     <span class="tech-tag">CSS3</span>
                     <span class="tech-tag">JavaScript</span>
-                    <span class="tech-tag">Адаптивный дизайн</span>
+                    <span class="tech-tag">A11y</span>
                 </div>
-                
+
                 <div class="project-buttons">
-                    <a href="https://nizi52.github.io" target="_blank" class="project-btn primary">Живая версия</a>
-                    <a href="https://github.com/nizi52/nizi52.github.io" target="_blank" class="project-btn secondary">Исходный код</a>
+                    <a href="https://nizi52.github.io" target="_blank" class="btn btn-primary">
+                        Live проект
+                    </a>
+                    <a href="https://github.com/nizi52/nizi52.github.io" target="_blank" class="btn btn-secondary">
+                        GitHub
+                    </a>
                 </div>
-            </div>
-            
-            <!-- Проект 2: Шахматы -->
-            <div class="project-card-large">
-                <div class="project-icon">♟️</div>
-                <h3>Терминальные шахматы</h3>
-                <p>Консольная игра в шахматы с полной реализацией правил. Проект демонстрирует работу с алгоритмами и ООП.</p>
-                
-                <div class="project-screenshots">
-                    <div class="screenshot-item">
-                        <img src="../images/icons/chesspict1.png" 
-                            alt="Игровое поле шахмат" 
-                            class="responsive-screenshot">
-                    </div>
-                    <div class="screenshot-item">
-                        <img src="../images/icons/chesspict2.png" 
-                            alt="Система ходов" 
-                            class="responsive-screenshot">
-                    </div>
+            </article>
+
+            <!-- 2. Шахматы в терминале -->
+            <article class="project-card" tabindex="0">
+                <div class="project-emoji">♟️</div>
+                <h3 class="project-title">Шахматы в терминале</h3>
+                <p class="project-desc">Консольная игра на Python с полной реализацией правил, защитой от неверных ходов и поддержкой всех фигур.</p>
+
+                <div class="screenshots">
+                    <div class="screenshot"><img src="../images/icons/chesspict1.png" alt="Игровое поле" loading="lazy"></div>
+                    <div class="screenshot"><img src="../images/icons/chesspict2.png" alt="Пример хода" loading="lazy"></div>
+                    <div class="screenshot"><img src="../images/icons/chesspict3.png" alt="Шах и мат" loading="lazy"></div>
                 </div>
-                
-                <div class="tech-stack">
+
+                <div class="project-tech">
                     <span class="tech-tag">Python</span>
-                    <span class="tech-tag">ООП</span>
-                    <span class="tech-tag">Алгоритмы</span>
+                    <span class="tech-tag">OOP</span>
                 </div>
-                
+
                 <div class="project-buttons">
-                    <a href="https://github.com/nizi52/pychess" target="_blank" class="project-btn secondary">Исходный код</a>
+                    <a href="https://github.com/nizi52/pychess" target="_blank" class="btn btn-secondary">
+                        GitHub
+                    </a>
                 </div>
-            </div>
-            
-            <!-- Проект 3: Генератор паролей -->
-            <div class="project-card-large">
-                <div class="project-icon">🔐</div>
-                <h3>Генератор паролей</h3>
-                <p>Десктопное приложение для генерации безопасных паролей с графическим интерфейсом. Адаптивный интерфейс под разные разрешения.</p>
-                
-                <div class="project-screenshots">
-                    <div class="screenshot-item">
-                        <img src="../images/icons/passpic1.png" 
-                            alt="Главный интерфейс генератора" 
-                            class="responsive-screenshot">
-                    </div>
-                    <div class="screenshot-item">
-                        <img src="../images/icons/passpic2.png" 
-                            alt="Настройки генерации" 
-                            class="responsive-screenshot">
-                    </div>
-                    <div class="screenshot-item">
-                        <img src="../images/icons/passpic3.png" 
-                            alt="Генератор случайного числа" 
-                            class="responsive-screenshot">
-                    </div>
+            </article>
+
+            <!-- 3. Генератор паролей -->
+            <article class="project-card" tabindex="0">
+                <div class="project-emoji">🔐</div>
+                <h3 class="project-title">Генератор паролей</h3>
+                <p class="project-desc">Десктопное приложение на C++ и Qt. Генерирует безопасные пароли любой длины и сложности с гибкими настройками.</p>
+
+                <div class="screenshots">
+                    <div class="screenshot"><img src="../images/icons/passpic1.png" alt="Главный экран" loading="lazy"></div>
+                    <div class="screenshot"><img src="../images/icons/passpic2.png" alt="Настройки" loading="lazy"></div>
+                    <div class="screenshot"><img src="../images/icons/passpic3.png" alt="Результат" loading="lazy"></div>
                 </div>
-                
-                <div class="tech-stack">
-                    <span class="tech-tag">С++</span>
-                    <span class="tech-tag">QT</span>
+
+                <div class="project-tech">
+                    <span class="tech-tag">C++</span>
+                    <span class="tech-tag">Qt6</span>
                     <span class="tech-tag">GUI</span>
                 </div>
-                
+
                 <div class="project-buttons">
-                    <a href="https://github.com/nizi52/passwordiki-generator" target="_blank" class="project-btn secondary">Исходный код</a>
+                    <a href="https://github.com/nizi52/passwordiki-generator" target="_blank" class="btn btn-secondary">
+                        GitHub
+                    </a>
                 </div>
-            </div>
-        </div>
+            </article>
+        </section>
     </main>
 
-    <footer>
+    <footer role="contentinfo">
         <div class="container">
-            <p>© 2025 Проекты <a href="https://github.com/nizi52" target="_blank" class="github-link--light">GitHub</a></p>
+            <p>© 2025 Зайнуллин Яков</p>
         </div>
     </footer>
-
-    <script>
-        // Проверка и загрузка изображений
-        document.addEventListener('DOMContentLoaded', function() {
-            const images = document.querySelectorAll('img');
-            images.forEach(img => {
-                img.onerror = function() {
-                    console.log('Ошибка загрузки изображения:', this.src);
-                    // Если изображение не загружается, заменяем на placeholder
-                    const placeholder = document.createElement('div');
-                    placeholder.className = 'image-placeholder';
-                    
-                    // Разные иконки для разных типов изображений
-                    if (this.src.includes('sitepict')) {
-                        placeholder.innerHTML = '🌐';
-                    } else if (this.src.includes('chesspict')) {
-                        placeholder.innerHTML = '♟️';
-                    } else if (this.src.includes('passpic')) {
-                        placeholder.innerHTML = '🔐';
-                    } else {
-                        placeholder.innerHTML = '🖼️';
-                    }
-                    
-                    placeholder.style.width = '100%';
-                    placeholder.style.height = '200px';
-                    placeholder.style.display = 'flex';
-                    placeholder.style.alignItems = 'center';
-                    placeholder.style.justifyContent = 'center';
-                    placeholder.style.background = 'linear-gradient(135deg, #667eea, #764ba2)';
-                    placeholder.style.color = 'white';
-                    placeholder.style.fontSize = '3rem';
-                    placeholder.style.borderRadius = '10px';
-                    
-                    this.parentNode.replaceChild(placeholder, this);
-                };
-                
-                // Логируем успешную загрузку
-                img.onload = function() {
-                    console.log('Изображение загружено:', this.src);
-                };
-            });
-        });
-    </script>
 </body>
 </html>
